@@ -9,15 +9,10 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
+  Timestamp, // Import Timestamp
 } from "firebase/firestore";
 import app from "./init";
-import {
-  deleteObject,
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 
 const firestore = getFirestore(app);
 const storage = getStorage();
@@ -34,15 +29,8 @@ export async function retrieveDataById(collectionName: string, id: string) {
   return data;
 }
 
-export async function retrieveDataByField(
-  collectionName: string,
-  field: string,
-  value: string
-) {
-  const q = query(
-    collection(firestore, collectionName),
-    where(field, "==", value)
-  );
+export async function retrieveDataByField(collectionName: string, field: string, value: string) {
+  const q = query(collection(firestore, collectionName), where(field, "==", value));
   const snapshot = await getDocs(q);
   const data = snapshot.docs.map((doc) => ({
     id: doc.id,
@@ -61,6 +49,11 @@ export async function addData(collectionName: string, data: any) {
     };
   } catch (err) {
     console.log(err);
+    return {
+      status: false,
+      statusCode: 500,
+      message: "Failed to add data",
+    };
   }
 }
 
@@ -74,6 +67,11 @@ export async function updateData(collectionName: string, id: any, data: any) {
     };
   } catch (error) {
     console.log(error);
+    return {
+      status: false,
+      statusCode: 500,
+      message: "Failed to update data",
+    };
   }
 }
 
@@ -87,6 +85,45 @@ export async function deleteById(collectionName: string, id: any) {
     };
   } catch (error) {
     console.log(error);
+    return {
+      status: false,
+      statusCode: 500,
+      message: "Failed to delete data",
+    };
+  }
+}
+
+// Fungsi baru untuk menambahkan balasan
+export async function addReply(commentId: string, replyData: any) {
+  try {
+    await addDoc(collection(firestore, "comments", commentId, "replies"), {
+      ...replyData,
+      created_at: Timestamp.now(), // Gunakan Timestamp.now() untuk waktu Firebase
+    });
+    return {
+      status: true,
+      statusCode: 200,
+      message: "Reply added successfully",
+    };
+  } catch (err) {
+    console.error("Error adding reply:", err);
+    return {
+      status: false,
+      statusCode: 500,
+      message: "Failed to add reply",
+    };
+  }
+}
+
+// Fungsi baru untuk mengambil balasan dari subkoleksi
+export async function retrieveReplies(commentId: string) {
+  try {
+    const snapshot = await getDocs(collection(firestore, "comments", commentId, "replies"));
+    const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    return data;
+  } catch (error) {
+    console.error("Error retrieving replies:", error);
+    return []; // Mengembalikan array kosong jika ada error
   }
 }
 

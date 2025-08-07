@@ -3,13 +3,7 @@ import Modal from "./modal";
 import toast from "react-hot-toast";
 import { addData } from "../../services/firebase/services";
 
-export default function ModalRsvp({
-  setIsModalOpen,
-  username,
-}: {
-  setIsModalOpen: Function;
-  username: string;
-}) {
+export default function ModalRsvp({ setIsModalOpen, username }: { setIsModalOpen: Function; username: string }) {
   const [close, setClose] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -35,13 +29,7 @@ export default function ModalRsvp({
 
     const regex = /^-?\d+(\.\d+)?([eE][-+]?\d+)?$/;
 
-    if (
-      name === "" ||
-      telepon === "" ||
-      email === "" ||
-      presence === "" ||
-      jumlah === ""
-    ) {
+    if (name === "" || telepon === "" || email === "" || presence === "" || jumlah === "") {
       toast.error("Data tidak boleh ada yang kosong");
       return;
     }
@@ -92,75 +80,36 @@ export default function ModalRsvp({
 
   const preventPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     const pasteData = e.clipboardData.getData("Text");
-    if (
-      pasteData.includes("e") ||
-      pasteData.includes("E") ||
-      pasteData.includes("+") ||
-      pasteData.includes("-") ||
-      pasteData.includes(".")
-    ) {
+    if (pasteData.includes("e") || pasteData.includes("E") || pasteData.includes("+") || pasteData.includes("-") || pasteData.includes(".")) {
       e.preventDefault();
     }
   };
   return (
-    <Modal
-      width="max-w-xl"
-      onClose={() => setIsModalOpen(false)}
-      closed={close}
-    >
+    <Modal width="max-w-xl" onClose={() => setIsModalOpen(false)} closed={close}>
       <section className="flex flex-col gap-3 text-neutral-600">
         <h1 className="text-center font-bold text-xl">RSVP</h1>
         <p className="text-sm font-light text-gray-500">
           <span className="text-red-500">*</span> : Wajib Diisikan
         </p>
-        <form
-          ref={formRef}
-          onSubmit={handleFormSubmit}
-          className="flex flex-col gap-3"
-        >
+        <form ref={formRef} onSubmit={handleFormSubmit} className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <label htmlFor="name" className="font-medium">
               Nama Tamu <span className="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={username}
-              defaultValue={username}
-              className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full"
-              placeholder="Nama tamu"
-              required
-            />
+            <input type="text" id="name" name="name" value={username} defaultValue={username} className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full" placeholder="Nama tamu" required />
           </div>
           <section className="flex flex-row gap-3 sm:flex-col w-full">
             <div className="flex flex-col gap-1 w-full">
               <label htmlFor="telepon" className="font-medium">
                 No Telepon <span className="text-red-500">*</span>
               </label>
-              <input
-                type="number"
-                name="telepon"
-                id="telepon"
-                className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full"
-                required
-                placeholder="08123456789"
-                onKeyDown={preventInvalidInput}
-                onPaste={preventPaste}
-              />
+              <input type="number" name="telepon" id="telepon" className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full" required placeholder="08123456789" onKeyDown={preventInvalidInput} onPaste={preventPaste} />
             </div>
             <div className="flex flex-col gap-1 w-full">
               <label htmlFor="email" className="font-medium">
                 Email <span className="text-red-500">*</span>
               </label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full"
-                required
-                placeholder="alexbusiness.code@gmail.com"
-              />
+              <input type="text" id="email" name="email" className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full" required placeholder="alexbusiness.code@gmail.com" />
             </div>
           </section>
           <section>
@@ -168,24 +117,11 @@ export default function ModalRsvp({
               Info Kehadiran <span className="text-red-500">*</span>
             </h1>
             <label htmlFor="hadir" className="cursor-pointer">
-              <input
-                type="radio"
-                id="hadir"
-                name="presence"
-                className="mr-1"
-                value="hadir"
-                defaultChecked
-              />
+              <input type="radio" id="hadir" name="presence" className="mr-1" value="hadir" defaultChecked />
               Hadir
             </label>
             <label htmlFor="tidakHadir" className="cursor-pointer">
-              <input
-                type="radio"
-                id="tidakHadir"
-                name="presence"
-                className="mr-1 ml-2 text-black"
-                value="tidakHadir"
-              />
+              <input type="radio" id="tidakHadir" name="presence" className="mr-1 ml-2 text-black" value="tidakHadir" />
               Tidak Hadir
             </label>
           </section>
@@ -193,43 +129,20 @@ export default function ModalRsvp({
             <label htmlFor="jumlah" className="font-medium">
               Jumlah Kehadiran <span className="text-red-500">*</span>
             </label>
-            <input
-              type="number"
-              id="jumlah"
-              name="jumlah"
-              className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full"
-              required
-              onKeyDown={preventInvalidInput}
-              onPaste={preventPaste}
-              placeholder="1 - 99"
-            />
+            <input type="number" id="jumlah" name="jumlah" className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full" required onKeyDown={preventInvalidInput} onPaste={preventPaste} placeholder="1 - 99" />
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="keterangan" className="font-medium">
               Keterangan
             </label>
-            <input
-              type="text"
-              id="keterangan"
-              name="keterangan"
-              className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full"
-              placeholder="(optional) tuliskan pesan kepada mempelai"
-            />
+            <input type="text" id="keterangan" name="keterangan" className="p-3 py-2 rounded-lg border outline-none bg-gray-200 w-full" placeholder="(optional) tuliskan pesan kepada mempelai" />
           </div>
         </form>
         <div className="w-full flex gap-3 justify-center">
-          <button
-            onClick={() => handleButtonClick()}
-            disabled={close}
-            className="bg-blue-400 px-3 py-1 text-white rounded-xl mt-3"
-          >
+          <button onClick={() => handleButtonClick()} disabled={close} className="bg-blue-400 px-3 py-1 text-white rounded-xl mt-3">
             Konfirm
           </button>
-          <button
-            onClick={() => setClose(true)}
-            disabled={close}
-            className="bg-gray-500 px-3 py-1 text-white rounded-xl mt-3"
-          >
+          <button onClick={() => setClose(true)} disabled={close} className="bg-gray-500 px-3 py-1 text-white rounded-xl mt-3">
             Cancel
           </button>
         </div>

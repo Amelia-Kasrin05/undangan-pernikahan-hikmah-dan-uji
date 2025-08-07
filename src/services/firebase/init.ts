@@ -5,12 +5,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: "AIzaSyAyM6bzzAfnC9Ifr-KGF0Gg4RDXN1OLscg",
+  authDomain: "undangan-pernikahan-hikmahuji.firebaseapp.com",
+  projectId: "undangan-pernikahan-hikmahuji",
+  storageBucket: "undangan-pernikahan-hikmahuji.firebasestorage.app",
+  messagingSenderId: "307280697062",
+  appId: "1:307280697062:web:2ce16b756d869f9e9d8d27",
+  measurementId: "G-Y5TN7T7J6V",
 };
 
 // Initialize Firebase
