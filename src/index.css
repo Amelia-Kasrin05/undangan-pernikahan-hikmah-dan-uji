@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dewa {
+  fill-opacity: 0;
+  stroke: #986a52;
+  stroke-width: 0px;
+  stroke-dasharray: 4500;
+  animation: draw 7s ease 1.5s forwards;
+  max-width: 350px;
+  width: 100%;
+}
+.tina {
+  fill-opacity: 0;
+  stroke: #986a52;
+  stroke-width: 0px;
+  stroke-dasharray: 4500;
+  width: 100%;
+  max-width: 300px;
+  animation: draw 10s ease forwards;
+}
+
+.dan {
+  fill-opacity: 0;
+  stroke: #986a52;
+  stroke-width: 0px;
+  stroke-dasharray: 4500;
+  width: 100%;
+  max-width: 300px;
+  animation: draw 8s ease 1s forwards;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 4500;
+    stroke-width: 0px;
+  }
+  10% {
+    stroke-width: 1.5px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-width: 1.5px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-blue-300;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-white rounded-full;
+}
+
+.comment-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comment-scrollbar::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+.comment-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-blue-300;
+}
+
+.hidden-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.hidden-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@font-face {
+  font-family: GreatVibes-Regular;
+  src: url(/fonts/GreatVibes-Regular.ttf);
+}
+@font-face {
+  font-family: Besley-VariableFont_wght;
+  src: url(/fonts/Besley-VariableFont_wght.ttf);
+}
+
+html,
+body {
+  font-family: "Comic Neue", cursive;
+}
+
+.besley-10 {
+  font-weight: 300;
+  font-size: 15px;
+  font-family: Besley-VariableFont_wght;
+  line-height: 1.2;
+}
+.besley-15 {
+  font-weight: 300;
+  font-size: 20px;
+  font-family: Besley-VariableFont_wght;
+  line-height: 1.2;
+}
+.latin-20 {
+  font-weight: 300;
+  font-size: 40px;
+  font-family: GreatVibes-Regular;
+  line-height: 1.2;
+}
+.latin-25 {
+  font-weight: 300;
+  font-size: 45px;
+  font-family: GreatVibes-Regular;
+  line-height: 1.2;
+}
+
+/* For Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.breakWord {
+  max-width: 100%; /* atau nilai yang sesuai */
+  overflow-wrap: break-word; /* Mengizinkan teks untuk membungkus jika terlalu panjang */
+  word-break: break-word; /* Memecah kata panjang jika perlu */
+}
+
+.steps {
+  animation: typing 3.5s steps(40, end) infinite;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
