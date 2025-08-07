@@ -6,14 +6,7 @@ import { updateData } from "../../services/firebase/services";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import useVisibility from "../../services/hooks/useVisibility";
-
-// Definisi tipe untuk balasan
-type ReplyType = {
-  id: string;
-  name: string;
-  reply_text: string;
-  created_at: { seconds: number; nanoseconds: number };
-};
+import { ReplyType } from "../../services/firebase/services"; // Import ReplyType dari services.ts
 
 export default function CommentBox({
   id,
@@ -24,9 +17,9 @@ export default function CommentBox({
   user = false,
   handleDeleteComment,
   getComments,
-  replies = [], // Tambahkan prop replies
-  onReplySubmit, // Tambahkan prop untuk submit balasan
-  currentUserName, // Tambahkan prop untuk nama user saat ini
+  replies = [],
+  onReplySubmit,
+  currentUserName,
 }: {
   id: string;
   name: string;
@@ -36,15 +29,15 @@ export default function CommentBox({
   admin: boolean;
   handleDeleteComment: Function;
   getComments: Function;
-  replies?: ReplyType[]; // Opsi untuk replies
+  replies?: ReplyType[];
   onReplySubmit: (commentId: string, replyName: string, replyText: string) => void;
   currentUserName: string;
 }) {
   const animation = useVisibility();
   const [edit, setEdit] = useState(false);
   const [newComment, setNewComment] = useState(comment);
-  const [showReplyForm, setShowReplyForm] = useState(false); // State untuk menampilkan form balasan
-  const [replyText, setReplyText] = useState(""); // State untuk teks balasan
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [replyText, setReplyText] = useState("");
 
   const newDate = new Date(date.seconds * 1000 + date.nanoseconds / 1_000_000).toLocaleDateString("id-ID");
 
@@ -65,10 +58,10 @@ export default function CommentBox({
         comment: newComment,
         update_at: new Date(),
       });
-      toast.success("Komentar berhasil diupdate!"); // Tambahkan toast sukses
+      toast.success("Komentar berhasil diupdate!");
     } catch (error) {
       console.log(error);
-      toast.error("Gagal update komentar."); // Tambahkan toast error
+      toast.error("Gagal update komentar.");
     } finally {
       setEdit(false);
       getComments();
@@ -79,9 +72,9 @@ export default function CommentBox({
     if (!replyText.trim()) {
       return toast.error("Balasan tidak boleh kosong!");
     }
-    onReplySubmit(id, currentUserName, replyText); // Panggil fungsi dari prop
-    setReplyText(""); // Kosongkan input setelah submit
-    setShowReplyForm(false); // Sembunyikan form setelah submit
+    onReplySubmit(id, currentUserName, replyText);
+    setReplyText("");
+    setShowReplyForm(false);
   };
 
   useEffect(() => {
@@ -90,7 +83,6 @@ export default function CommentBox({
     }
   }, [edit]);
 
-  // Fungsi pembantu untuk mengonversi timestamp
   const convertTimestampToDate = (timestamp: { seconds: number; nanoseconds: number } | null | undefined) => {
     if (!timestamp) return new Date(0);
     const seconds = timestamp.seconds || 0;
@@ -129,7 +121,6 @@ export default function CommentBox({
         </div>
       </div>
 
-      {/* Tombol Balas dan Form Balasan */}
       <div className="mt-2 flex flex-col items-start">
         {!showReplyForm && (
           <button onClick={() => setShowReplyForm(true)} className="text-xs text-blue-500 hover:underline">
@@ -157,7 +148,6 @@ export default function CommentBox({
           </div>
         )}
 
-        {/* Menampilkan Balasan */}
         {replies.length > 0 && (
           <div className="ml-4 mt-2 border-l pl-2 border-gray-200 w-full">
             {replies.map((reply) => (

@@ -3,8 +3,9 @@ import {
   addData,
   deleteById,
   retrieveData,
-  addReply, // Import addReply
-  retrieveReplies, // Import retrieveReplies
+  addReply,
+  retrieveReplies,
+  ReplyType, // Import ReplyType dari services.ts
 } from "../../services/firebase/services";
 import CommentBox from "../components/commentBox";
 import MainLayout from "../components/mainLayout";
@@ -14,14 +15,6 @@ import { motion } from "framer-motion";
 
 type FirestoreTimestamp = { seconds: number; nanoseconds: number };
 
-// Definisi tipe untuk balasan
-type ReplyType = {
-  id: string;
-  name: string;
-  reply_text: string;
-  created_at: FirestoreTimestamp;
-};
-
 // Update commentTypes untuk menyertakan replies
 type CommentTypes = {
   id: string;
@@ -29,7 +22,7 @@ type CommentTypes = {
   comment?: string;
   created_at?: FirestoreTimestamp;
   update_at?: FirestoreTimestamp;
-  replies?: ReplyType[]; // Tambahkan properti replies
+  replies?: ReplyType[]; // Gunakan ReplyType yang diimpor
 };
 
 export default function Comment({ refComment, name }: { refComment: any; name?: string }) {
@@ -39,7 +32,7 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
   const btn1 = useVisibility();
 
   const [comments, setComments] = useState<CommentTypes[]>([]);
-  const [commentInput, setCommentInput] = useState(""); // State untuk input komentar utama
+  const [commentInput, setCommentInput] = useState("");
 
   useEffect(() => {
     getComments();
@@ -57,12 +50,11 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
   const getComments = async () => {
     const mainComments: CommentTypes[] = await retrieveData("comments");
 
-    // Ambil balasan untuk setiap komentar utama
     const commentsWithReplies = await Promise.all(
       mainComments.map(async (comment) => {
         const replies = await retrieveReplies(comment.id);
-        // Urutkan balasan berdasarkan created_at jika diperlukan (paling lama di atas)
-        const sortedReplies = replies.sort((a: any, b: any) => {
+        const sortedReplies = replies.sort((a: ReplyType, b: ReplyType) => {
+          // Pastikan tipe di sini juga ReplyType
           const dateA: Date = convertTimestampToDate(a.created_at);
           const dateB: Date = convertTimestampToDate(b.created_at);
           return dateA.getTime() - dateB.getTime();
@@ -71,7 +63,6 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
       })
     );
 
-    // Urutkan komentar utama (paling baru di atas)
     const sortedComments = commentsWithReplies.sort((a: CommentTypes, b: CommentTypes) => {
       const dateA: Date = convertTimestampToDate(a.created_at);
       const dateB: Date = convertTimestampToDate(b.created_at);
@@ -84,7 +75,7 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
     e.preventDefault();
     const target = e.currentTarget as HTMLFormElement;
     const formName = (target.elements.namedItem("name") as HTMLInputElement)?.value || "";
-    const commentText = commentInput; // Gunakan state commentInput
+    const commentText = commentInput;
 
     if (formName === "") {
       return toast.error("Gunakan nama dari link yang telah dikirim oleh admin");
@@ -95,14 +86,12 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
     }
 
     if (commentText.trim() === "") {
-      // Gunakan .trim() untuk mengecek spasi kosong
       return toast.error("Tolong tuliskan ucapan dan doa restu Anda");
     }
 
     const userCommented = comments.some((existingComment) => existingComment.name === formName);
 
     if (userCommented && name !== "@tinandewa_admin") {
-      // Admin bisa posting lebih dari sekali
       return toast.error("Anda sudah memberikan ucapan dan doa restu");
     }
 
@@ -110,16 +99,16 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
       await addData("comments", {
         name: formName,
         comment: commentText,
-        created_at: new Date(), // Firebase akan mengonversinya ke Timestamp
-        update_at: new Date(), // Firebase akan mengonversinya ke Timestamp
+        created_at: new Date(),
+        update_at: new Date(),
       });
       toast.success("Berhasil Di Kirim");
-      setCommentInput(""); // Kosongkan input setelah submit
+      setCommentInput("");
     } catch (error) {
       console.log(error);
       toast.error("Gagal Mengirim");
     } finally {
-      getComments(); // Ambil komentar terbaru setelah submit
+      getComments();
     }
   };
 
@@ -135,7 +124,6 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
     }
   };
 
-  // Fungsi baru untuk menangani submit balasan
   const handleReplySubmit = async (commentId: string, replyName: string, replyText: string) => {
     if (replyText.trim() === "") {
       return toast.error("Balasan tidak boleh kosong!");
@@ -150,7 +138,7 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
       console.log(error);
       toast.error("Gagal mengirim balasan.");
     } finally {
-      getComments(); // Refresh semua komentar dan balasannya
+      getComments();
     }
   };
 
@@ -181,8 +169,8 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
           type="text"
           placeholder="Tulis ucapan & doa restu"
           disabled={name === "@tinandewa_admin"}
-          value={commentInput} // Kontrol input dengan state
-          onChange={(e) => setCommentInput(e.target.value)} // Update state saat input berubah
+          value={commentInput}
+          onChange={(e) => setCommentInput(e.target.value)}
           className="border p-2 bg-gray-200 outline-none"
         />
         <motion.button ref={btn1.ref} animate={btn1.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }} transition={{ duration: 0.7 }} type="submit" className="bg-blue-400 px-3 py-2 text-white rounded-full">
@@ -201,9 +189,9 @@ export default function Comment({ refComment, name }: { refComment: any; name?: 
             user={name === comment?.name}
             handleDeleteComment={handleDeleteComment}
             getComments={getComments}
-            replies={comment?.replies || []} // Teruskan balasan ke CommentBox
-            onReplySubmit={handleReplySubmit} // Teruskan fungsi submit balasan
-            currentUserName={name || ""} // Teruskan nama user saat ini
+            replies={comment?.replies || []}
+            onReplySubmit={handleReplySubmit}
+            currentUserName={name || ""}
           />
         ))}
       </div>

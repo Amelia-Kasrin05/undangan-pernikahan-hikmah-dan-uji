@@ -1,21 +1,17 @@
-import {
-  getFirestore,
-  getDocs,
-  collection,
-  getDoc,
-  doc,
-  query,
-  where,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  Timestamp, // Import Timestamp
-} from "firebase/firestore";
+import { getFirestore, getDocs, collection, getDoc, doc, query, where, addDoc, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
 import app from "./init";
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 
 const firestore = getFirestore(app);
 const storage = getStorage();
+
+// Definisi tipe untuk balasan (dipindahkan ke sini agar konsisten)
+export type ReplyType = {
+  id: string;
+  name: string;
+  reply_text: string;
+  created_at: { seconds: number; nanoseconds: number };
+};
 
 export async function retrieveData(collectionName: string) {
   const snapshot = await getDocs(collection(firestore, collectionName));
@@ -93,12 +89,11 @@ export async function deleteById(collectionName: string, id: any) {
   }
 }
 
-// Fungsi baru untuk menambahkan balasan
 export async function addReply(commentId: string, replyData: any) {
   try {
     await addDoc(collection(firestore, "comments", commentId, "replies"), {
       ...replyData,
-      created_at: Timestamp.now(), // Gunakan Timestamp.now() untuk waktu Firebase
+      created_at: Timestamp.now(),
     });
     return {
       status: true,
@@ -115,15 +110,21 @@ export async function addReply(commentId: string, replyData: any) {
   }
 }
 
-// Fungsi baru untuk mengambil balasan dari subkoleksi
-export async function retrieveReplies(commentId: string) {
+// Memastikan retrieveReplies mengembalikan ReplyType[]
+export async function retrieveReplies(commentId: string): Promise<ReplyType[]> {
   try {
     const snapshot = await getDocs(collection(firestore, "comments", commentId, "replies"));
-    const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    const data = snapshot.docs.map(
+      (doc) =>
+        ({
+          id: doc.id,
+          ...doc.data(),
+        } as ReplyType)
+    ); // Explicitly cast to ReplyType
     return data;
   } catch (error) {
     console.error("Error retrieving replies:", error);
-    return []; // Mengembalikan array kosong jika ada error
+    return [];
   }
 }
 
