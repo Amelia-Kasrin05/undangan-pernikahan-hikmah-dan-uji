@@ -60,7 +60,7 @@ export default function Gift() {
           }
           transition={{ duration: 0.7 }}
         >
-          Tina, Jl. Malioboro, Sosromenduran, Gedong Tengen, Kota Yogyakarta
+          Hikmah, komplek, Jl. Villa Idaman blok A5, Sungai Sapih, Kec. Kuranji, Kota Padang, Sumatera Barat 
         </motion.p>
       </div>
     </MainLayout>

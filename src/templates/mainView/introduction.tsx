@@ -20,7 +20,7 @@ export default function Introduction({
     seconds: 0,
   });
 
-  const countdownDate = new Date("January 30, 2030 09:00:00").getTime();
+  const countdownDate = new Date("September 06, 2025 09:00:00").getTime();
 
   const interval = setInterval(() => {
     const now = new Date().getTime();
@@ -109,7 +109,7 @@ export default function Introduction({
           isFlowerInVIew={flower1.isVisible}
           refDesc={desc1.ref}
           isDescInVIew={desc1.isVisible}
-          name="Tina"
+          name="Uji"
           desc="Putri kedua dari Bapak Naruto dan Ibu Hinata"
         />
         <ProfileCard
@@ -121,8 +121,8 @@ export default function Introduction({
           isFlowerInVIew={flower2.isVisible}
           refDesc={desc2.ref}
           isDescInVIew={desc2.isVisible}
-          name="Dewa"
-          desc="Putra pertama dari Bapak Sasuke dan Ibu Sakura"
+          name="Hikmah"
+          desc="Putra pertama dari Bapak Mufrinal,S.pd dan Ibu Kasmaweni"
         />
         <footer className="mx-5 mt-10 flex flex-col gap-10">
           <motion.p
@@ -131,7 +131,7 @@ export default function Introduction({
             transition={{ duration: 0.7 }}
             className="text-gray-500"
           >
-            Sabtu, 30 Januari 2030
+            Sabtu, 06 September 2025
           </motion.p>
           <div ref={countdown.ref} className="flex gap-3 justify-center">
             <CountdownCard

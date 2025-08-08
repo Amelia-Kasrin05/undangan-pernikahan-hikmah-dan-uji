@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Dewa from "../../assets/dewa";
+import Uji from "../../assets/uji";
 import Dan from "../../assets/dan";
-import Tina from "../../assets/tina";
+import Hikmah from "../../assets/hikmah";
 import { motion } from "framer-motion";
 import useWindowWidth from "../../services/hooks/useWindowWidth";
 
@@ -55,9 +55,9 @@ export default function WelcomeView({ setIsOpen, isOpen, audio }: { isOpen: bool
           }
           className="flex max-w-[13rem]"
         >
-          <Tina className="fill-white max-w-[300px] w-full -mr-5" />
+          <Uji className="fill-white max-w-[300px] w-full -mr-5" />
           <Dan viewBox="-5 68 300 110" className="fill-white max-w-[90px] w-full" />
-          <Dewa className="fill-white max-w-[300px] w-full -ml-5" />
+          <Hikmah className="fill-white max-w-[300px] w-full -ml-5" />
         </motion.div>
         <motion.p
           animate={

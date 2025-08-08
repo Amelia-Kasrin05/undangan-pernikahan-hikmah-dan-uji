@@ -1,6 +1,6 @@
 import Dan from "../../assets/dan";
-import Dewa from "../../assets/dewa";
-import Tina from "../../assets/tina";
+import Hikmah from "../../assets/hikmah";
+import Uji from "../../assets/uji";
 
 export default function Opening({ refHome }: { refHome: any }) {
   return (
@@ -10,14 +10,14 @@ export default function Opening({ refHome }: { refHome: any }) {
           The Wedding Of
         </p>
         <div className="relative flex flex-col max-w-[100px] gap-3">
-          <div id="tina" className={`max-w-full mb-2`}>
-            <Tina className="fill-white w-full" />
+          <div id="uji" className={`max-w-full mb-2`}>
+            <Uji className="fill-white w-full" />
           </div>
           <div id="dan" className="max-w-full -mb-1">
             <Dan className="fill-white w-full" />
           </div>
-          <div id="dewa" className={`max-w-full`}>
-            <Dewa className="fill-white w-full" />
+          <div id="hikmah" className={`max-w-full`}>
+            <Hikmah className="fill-white w-full" />
           </div>
         </div>
         <div className="flex justify-center items-center gap-2 text-white mt-2">
@@ -27,11 +27,11 @@ export default function Opening({ refHome }: { refHome: any }) {
             className="text-center border-r border-l border-gray-200/70 p-3 py-2"
           >
             <h1 id="date" className="text-3xl">
-              30
+              06
             </h1>
-            <p id="year">2030</p>
+            <p id="year">2025</p>
           </div>
-          <p id="month">Januari</p>
+          <p id="month">September</p>
         </div>
       </main>
     </section>

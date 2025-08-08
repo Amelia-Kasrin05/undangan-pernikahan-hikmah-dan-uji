@@ -13,7 +13,7 @@ export default function EndFooter() {
         className="font-medium text-white cursor-pointer z-10"
         onClick={() => window.open("https://alexanderfarrel.vercel.app")}
       >
-        by <span className="hover:text-white/80">Alexander Farrel</span>
+        by <span className="hover:text-white/80">Amel & Irul</span>
       </p>
     </MainLayout>
   );

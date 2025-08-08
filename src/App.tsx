@@ -60,7 +60,7 @@ function App() {
               <Helmet>
                 <meta
                   property="og:title"
-                  content="The Wedding Of Tina and Dewa"
+                  content="The Wedding Of Uji and Hikmah"
                 />
                 <meta property="og:description" content="19 Oktober 2024" />
                 <meta property="og:image" content="/images/welcome.jpg" />
@@ -76,7 +76,7 @@ function App() {
                 <meta property="og:image:width" content="1080" />
                 <meta property="og:image:height" content="1080" />
                 <meta property="og:type" content="website" />
-                <meta property="og:site_name" content="Tina & Dewa" />
+                <meta property="og:site_name" content="Uji & Hikmah" />
                 <meta
                   property="og:url"
                   content="https://tinandewa.vercel.app/"

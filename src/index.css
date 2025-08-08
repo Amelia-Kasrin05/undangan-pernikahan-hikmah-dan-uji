@@ -21,6 +21,23 @@
   animation: draw 10s ease forwards;
 }
 
+/* Animasi untuk nama baru menggunakan text */
+.uji {
+  opacity: 0;
+  color: #986a52;
+  width: 100%;
+  max-width: 300px;
+  animation: fadeInText 3s ease forwards;
+}
+
+.hikmah {
+  opacity: 0;
+  color: #986a52;
+  animation: fadeInText 3s ease 1.5s forwards;
+  max-width: 350px;
+  width: 100%;
+}
+
 .dan {
   fill-opacity: 0;
   stroke: #986a52;
@@ -45,6 +62,17 @@
   }
 }
 
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -64,14 +92,6 @@
 }
 .comment-scrollbar::-webkit-scrollbar-thumb {
   @apply bg-blue-300;
-}
-
-.hidden-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 .hidden-scrollbar {
@@ -134,9 +154,9 @@ input[type="number"] {
 }
 
 .breakWord {
-  max-width: 100%; /* atau nilai yang sesuai */
-  overflow-wrap: break-word; /* Mengizinkan teks untuk membungkus jika terlalu panjang */
-  word-break: break-word; /* Memecah kata panjang jika perlu */
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .steps {
