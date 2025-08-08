@@ -6,13 +6,7 @@ import { motion } from "framer-motion";
 import useVisibility from "../../services/hooks/useVisibility";
 import ButtonAnimate from "../ui/buttonAnimate";
 
-export default function Introduction({
-  windowWidth,
-  refBride,
-}: {
-  windowWidth: number;
-  refBride: any;
-}) {
+export default function Introduction({ windowWidth, refBride }: { windowWidth: number; refBride: any }) {
   const [time, setTime] = useState({
     days: 0,
     hours: 0,
@@ -37,9 +31,7 @@ export default function Introduction({
 
   const updateDuration = (duration: number) => {
     const days = Math.floor(duration / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
+    const hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((duration % (1000 * 60)) / 1000);
 
@@ -63,10 +55,7 @@ export default function Introduction({
 
   return (
     <MainLayout>
-      <div
-        ref={refBride}
-        className="relative flex justify-center items-center w-full max-w-[350px] -my-10"
-      >
+      <div ref={refBride} className="relative flex justify-center items-center w-full max-w-[350px] -my-10">
         <motion.div
           ref={bismillah.ref}
           animate={bismillah.isVisible ? { scaleX: 0 } : { scaleX: 1 }}
@@ -79,26 +68,11 @@ export default function Introduction({
         <img src="/bismillah.png" alt="bismillah" />
       </div>
       <div className="text-center flex flex-col items-center">
-        <motion.p
-          ref={text1.ref}
-          className="font-medium"
-          animate={
-            text1.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
-          }
-          transition={{ duration: 0.7 }}
-        >
+        <motion.p ref={text1.ref} className="font-medium" animate={text1.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} transition={{ duration: 0.7 }}>
           Assalamu'alaikum Warahmatullaahi Wabarakaatuh
         </motion.p>
-        <motion.p
-          ref={text2.ref}
-          animate={
-            text2.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
-          }
-          transition={{ duration: 0.7 }}
-          className="font-light text-gray-500"
-        >
-          Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.
-          Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami.
+        <motion.p ref={text2.ref} animate={text2.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} transition={{ duration: 0.7 }} className="font-light text-gray-500">
+          Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami.
         </motion.p>{" "}
         <ProfileCard
           refImage={profileCard1.ref}
@@ -109,8 +83,8 @@ export default function Introduction({
           isFlowerInVIew={flower1.isVisible}
           refDesc={desc1.ref}
           isDescInVIew={desc1.isVisible}
-          name="Uji"
-          desc="Putri kedua dari Bapak Naruto dan Ibu Hinata"
+          name="Hikmah Suciani, S.Pd ,Gr"
+          desc="Putri Pertama dari Bapak Mufrinal, S.Pd. SD dan Ibu Wendri Kasmaweni"
         />
         <ProfileCard
           refImage={profileCard2.ref}
@@ -121,52 +95,25 @@ export default function Introduction({
           isFlowerInVIew={flower2.isVisible}
           refDesc={desc2.ref}
           isDescInVIew={desc2.isVisible}
-          name="Hikmah"
-          desc="Putra pertama dari Bapak Mufrinal,S.pd dan Ibu Kasmaweni"
+          name="Uji Purnomo Aji, S.P"
+          desc="Putraa ketiga dari Bapak Suyadi dan Ibu Sugiyanti"
         />
         <footer className="mx-5 mt-10 flex flex-col gap-10">
-          <motion.p
-            ref={text3.ref}
-            animate={text3.isVisible ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-gray-500"
-          >
+          <motion.p ref={text3.ref} animate={text3.isVisible ? { opacity: 1 } : { opacity: 0 }} transition={{ duration: 0.7 }} className="text-gray-500">
             Sabtu, 06 September 2025
           </motion.p>
           <div ref={countdown.ref} className="flex gap-3 justify-center">
-            <CountdownCard
-              isInView={countdown.isVisible}
-              num={time.days}
-              desc="Days"
-            />
-            <CountdownCard
-              isInView={countdown.isVisible}
-              num={time.hours}
-              desc="Hours"
-              delay={0.2}
-            />
-            <CountdownCard
-              isInView={countdown.isVisible}
-              num={time.minutes}
-              desc="Min"
-              delay={0.4}
-            />
-            <CountdownCard
-              isInView={countdown.isVisible}
-              num={time.seconds}
-              desc="Sec"
-              delay={0.6}
-            />
+            <CountdownCard isInView={countdown.isVisible} num={time.days} desc="Days" />
+            <CountdownCard isInView={countdown.isVisible} num={time.hours} desc="Hours" delay={0.2} />
+            <CountdownCard isInView={countdown.isVisible} num={time.minutes} desc="Min" delay={0.4} />
+            <CountdownCard isInView={countdown.isVisible} num={time.seconds} desc="Sec" delay={0.6} />
           </div>
           <ButtonAnimate
             button={button}
             windowWidth={windowWidth}
             img="/calendar.png"
             onClick={() => {
-              window.open(
-                "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MGc5OGIyb2tjMmY0NGtlMWg4bzI2aDY0dnUgMWJiNTJjNGUyOTMyNWY3MDRmNDJjMjM5NjIyM2I2NTFhOTZiMTg3ZGUyYzYzMzk1NTI2MGQ1ZjQxNjE5ZThiMEBn&tmsrc=1bb52c4e29325f704f42c2396223b651a96b187de2c633955260d5f41619e8b0%40group.calendar.google.com",
-                "_blank"
-              );
+              window.open("https://calendar.app.google/uRGwGxYXMYVtN9SC6", "_blank");
             }}
           >
             Ingatkan Via Google Kalender
