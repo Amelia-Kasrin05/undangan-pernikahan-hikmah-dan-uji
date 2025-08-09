@@ -2,28 +2,26 @@
 
 import type React from "react";
 
-import { useCallback, useState } from "react"; // Import useCallback and useState
+import { useCallback, useState } from "react";
 import MainLayout from "../components/mainLayout";
 import ProfileCard from "../components/profileCard";
 import useVisibility from "../../services/hooks/useVisibility";
-import CountdownCard from "../components/countdownCard"; // Import CountdownCard
-import ButtonAnimate from "../components/buttonAnimate"; // Import ButtonAnimate
+import CountdownCard from "../components/countdownCard";
+import ButtonAnimate from "../ui/buttonAnimate"; // Jalur impor diperbaiki
 
 export default function Introduction({ refBride }: { refBride: any }) {
   const bismillah = useVisibility();
-  const text1 = useVisibility();
-  const text2 = useVisibility();
+  // text1, text2, text3 dihapus karena tidak digunakan
   const profileCard1 = useVisibility();
   const profileCard2 = useVisibility();
   const name1 = useVisibility();
   const name2 = useVisibility();
   const flower1 = useVisibility();
   const flower2 = useVisibility();
-  const desc1 = useVisibility();
-  const desc2 = useVisibility();
-  const text3 = useVisibility();
   const countdown = useVisibility();
   const button = useVisibility();
+  const desc1 = useVisibility(); // Pastikan desc1 dan desc2 tetap ada jika digunakan di ProfileCard
+  const desc2 = useVisibility();
 
   // Menggabungkan refBride dan bismillah.ref
   const mergedRef = useCallback(
@@ -136,10 +134,7 @@ export default function Introduction({ refBride }: { refBride: any }) {
             button={button}
             img="/calendar.png"
             onClick={() => {
-              window.open(
-                "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MGc5OGIyb2tjMmY0NGtlMWg4bzI2aDY0dnUgMWJiNTJjNGUyOTMyNWY3MDRmNDJjMjM5NjIyM2I2NTFhOTZiMTg3ZGUyYzYzMzk1NTI2MGQ1ZjQxNjE5ZThiMEBn&tmsrc=1bb52c4e29325f704f42c2396223b651a96b187de2c633955260d5f41619e8b0%40group.calendar.google.com",
-                "_blank"
-              );
+              window.open("https://calendar.app.google/Z8o9rghtfimQLox89", "_blank");
             }}
           >
             Ingatkan Via Google Kalender
