@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Opening from "../mainView/opening";
 import Introduction from "../mainView/introduction";
+
 import useWindowWidth from "../../services/hooks/useWindowWidth";
 import StartAnimation from "../components/startAnimation";
 import Location from "../mainView/location";

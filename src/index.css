@@ -2,6 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animasi sederhana tanpa particle effects */
+.uji-animate {
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out 0.5s forwards;
+}
+
+.dan-animate {
+  opacity: 0;
+  animation: fadeInScale 0.8s ease-out 1.8s forwards;
+}
+
+.hikmah-animate {
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out 2.5s forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Legacy animations - keeping for compatibility */
 .dewa {
   fill-opacity: 0;
   stroke: #986a52;
@@ -11,6 +53,7 @@
   max-width: 350px;
   width: 100%;
 }
+
 .tina {
   fill-opacity: 0;
   stroke: #986a52;
@@ -19,23 +62,6 @@
   width: 100%;
   max-width: 300px;
   animation: draw 10s ease forwards;
-}
-
-/* Animasi untuk nama baru menggunakan text */
-.uji {
-  opacity: 0;
-  color: #986a52;
-  width: 100%;
-  max-width: 300px;
-  animation: fadeInText 3s ease forwards;
-}
-
-.hikmah {
-  opacity: 0;
-  color: #986a52;
-  animation: fadeInText 3s ease 1.5s forwards;
-  max-width: 350px;
-  width: 100%;
 }
 
 .dan {
@@ -59,17 +85,6 @@
   100% {
     stroke-dashoffset: 0;
     stroke-width: 1.5px;
-  }
-}
-
-@keyframes fadeInText {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
   }
 }
 
