@@ -9,9 +9,14 @@ import useVisibility from "../../services/hooks/useVisibility";
 import CountdownCard from "../components/countdownCard";
 import ButtonAnimate from "../ui/buttonAnimate"; // Jalur impor diperbaiki
 
-export default function Introduction({ refBride }: { refBride: any }) {
+export default function Introduction({
+  refBride,
+  windowWidth, // windowWidth ditambahkan kembali sebagai prop
+}: {
+  refBride: any;
+  windowWidth: number; // Tipe untuk windowWidth
+}) {
   const bismillah = useVisibility();
-  // text1, text2, text3 dihapus karena tidak digunakan
   const profileCard1 = useVisibility();
   const profileCard2 = useVisibility();
   const name1 = useVisibility();
@@ -20,7 +25,7 @@ export default function Introduction({ refBride }: { refBride: any }) {
   const flower2 = useVisibility();
   const countdown = useVisibility();
   const button = useVisibility();
-  const desc1 = useVisibility(); // Pastikan desc1 dan desc2 tetap ada jika digunakan di ProfileCard
+  const desc1 = useVisibility();
   const desc2 = useVisibility();
 
   // Menggabungkan refBride dan bismillah.ref
@@ -132,9 +137,13 @@ export default function Introduction({ refBride }: { refBride: any }) {
 
           <ButtonAnimate
             button={button}
+            windowWidth={windowWidth} // windowWidth diteruskan ke ButtonAnimate
             img="/calendar.png"
             onClick={() => {
-              window.open("https://calendar.app.google/Z8o9rghtfimQLox89", "_blank");
+              window.open(
+                "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MGc5OGIyb2tjMmY0NGtlMWg4bzI2aDY0dnUgMWJiNTJjNGUyOTMyNWY3MDRmNDJjMjM5NjIyM2I2NTFhOTZiMTg3ZGUyYzYzMzk1NTI2MGQ1ZjQxNjE5ZThiMEBn&tmsrc=1bb52c4e29325f704f42c2396223b651a96b187de2c633955260d5f41619e8b0%40group.calendar.google.com",
+                "_blank"
+              );
             }}
           >
             Ingatkan Via Google Kalender

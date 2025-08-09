@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Opening from "../mainView/opening";
 import Introduction from "../mainView/introduction";
+import useWindowWidth from "../../services/hooks/useWindowWidth"; // Pastikan ini diimpor
 import StartAnimation from "../components/startAnimation";
 import Location from "../mainView/location";
 import Doa from "../mainView/doa";
@@ -16,7 +17,7 @@ import Comment from "../mainView/comment";
 import Rsvp from "../mainView/rsvp";
 
 export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: any }) {
-  // const windowWidth = useWindowWidth() // Dihapus karena tidak digunakan di sini
+  const windowWidth = useWindowWidth(); // windowWidth digunakan di sini
 
   const refHome = useRef(null);
   const refBride = useRef(null);
@@ -93,7 +94,7 @@ export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: an
             </button>
             <Navbar refHome={refHome} refBride={refBride} refLocation={refLocation} refSchedule={refSchedule} refComment={refComment} />
             <Opening refHome={refHome} />
-            <Introduction refBride={refBride} />
+            <Introduction windowWidth={windowWidth} refBride={refBride} />
             <Location refLocation={refLocation} />
             <Schedule refSchedule={refSchedule} />
             <Doa />
