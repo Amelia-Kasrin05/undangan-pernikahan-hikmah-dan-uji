@@ -1,10 +1,12 @@
+"use client";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Opening from "../mainView/opening";
-import Introduction from "../mainView/introduction";
+import Introduction from "../mainView/introduction"; // Pastikan ini mengimpor versi terbaru
 
-import useWindowWidth from "../../services/hooks/useWindowWidth";
+import useWindowWidth from "../../services/hooks/useWindowWidth"; // Tetap diimpor jika digunakan di tempat lain
 import StartAnimation from "../components/startAnimation";
 import Location from "../mainView/location";
 import Doa from "../mainView/doa";
@@ -15,14 +17,8 @@ import Schedule from "../mainView/schedule";
 import Comment from "../mainView/comment";
 import Rsvp from "../mainView/rsvp";
 
-export default function MainView({
-  isOpen,
-  audio,
-}: {
-  isOpen: boolean;
-  audio: any;
-}) {
-  const windowWidth = useWindowWidth();
+export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: any }) {
+  const windowWidth = useWindowWidth(); // windowWidth masih digunakan di sini, jadi biarkan
 
   const refHome = useRef(null);
   const refBride = useRef(null);
@@ -94,25 +90,13 @@ export default function MainView({
         {/* WELCOME */}
         {isOpen && (
           <React.Fragment>
-            <button
-              onClick={handleAudio}
-              className="fixed right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white text-blue-400 shadow-xl outline-none p-2 z-10"
-            >
-              {isPlaying ? (
-                <img src="/icons/pause.png" alt="" className="w-full h-full" />
-              ) : (
-                <img src="/icons/play.png" alt="" className="w-full h-full" />
-              )}
+            <button onClick={handleAudio} className="fixed right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white text-blue-400 shadow-xl outline-none p-2 z-10">
+              {isPlaying ? <img src="/icons/pause.png" alt="" className="w-full h-full" /> : <img src="/icons/play.png" alt="" className="w-full h-full" />}
             </button>
-            <Navbar
-              refHome={refHome}
-              refBride={refBride}
-              refLocation={refLocation}
-              refSchedule={refSchedule}
-              refComment={refComment}
-            />
+            <Navbar refHome={refHome} refBride={refBride} refLocation={refLocation} refSchedule={refSchedule} refComment={refComment} />
             <Opening refHome={refHome} />
-            <Introduction windowWidth={windowWidth} refBride={refBride} />
+            {/* windowWidth dihapus dari sini */}
+            <Introduction refBride={refBride} />
             <Location refLocation={refLocation} />
             <Schedule refSchedule={refSchedule} />
             <Doa />

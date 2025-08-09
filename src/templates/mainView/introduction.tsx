@@ -3,7 +3,8 @@ import MainLayout from "../components/mainLayout";
 import ProfileCard from "../components/profileCard";
 import useVisibility from "../../services/hooks/useVisibility";
 
-export default function Introduction({ windowWidth }: { windowWidth: number }) {
+export default function Introduction({ refBride }: { refBride: any }) {
+  // windowWidth dihapus
   const profileCard1Image = useVisibility();
   const name1 = useVisibility();
   const flower1 = useVisibility();
