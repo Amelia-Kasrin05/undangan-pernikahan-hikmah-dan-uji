@@ -37,7 +37,7 @@ export default function Gift() {
             alt="Logo BRI"
             className="max-w-[150px] w-full mb-2"
           />
-          <Bank rek="542201017088533" name="Hikmah Suciani" />
+          <Bank rek="542201017088533" name="A.n Hikmah Suciani" />
         </div>
 
         {/* BCA - Uji Purnomo Aji */}
@@ -50,7 +50,7 @@ export default function Gift() {
             alt="Logo BCA"
             className="max-w-[150px] w-full mb-2"
           />
-          <Bank rek="8527025456" name="Uji Purnomo Aji" />
+          <Bank rek="8527025456" name="A.n Uji Purnomo Aji" />
         </div>
       </div>
 
