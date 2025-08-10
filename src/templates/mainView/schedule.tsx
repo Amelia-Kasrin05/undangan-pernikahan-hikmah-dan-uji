@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function Schedule({ refSchedule }: { refSchedule: any }) {
   const text1 = useVisibility(); // Untuk "Susunan Acara"
-  const text3 = useVisibility(); // Untuk "6 September 2025" dan isinya
+  const text3 = useVisibility(); // Untuk "06 September 2025" dan isinya
 
   return (
     <MainLayout className="gap-5" height="h-full">
@@ -18,7 +18,7 @@ export default function Schedule({ refSchedule }: { refSchedule: any }) {
           {/* column 2 - Hanya Tanggal 6 */}
           <div className="relative h-full w-full flex flex-col items-center">
             <motion.h2 initial={{ opacity: 0, y: -30 }} animate={text3.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }} transition={{ duration: 0.7, delay: 0.2 }} className="font-bold text-2xl text-gray-400 mb-4">
-              6 September 2025
+              06 September 2025
             </motion.h2>
             {/* middle line */}
             <motion.div

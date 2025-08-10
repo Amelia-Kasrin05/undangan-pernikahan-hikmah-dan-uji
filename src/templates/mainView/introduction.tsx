@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-
+import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import MainLayout from "../components/mainLayout";
 import ProfileCard from "../components/profileCard";
@@ -81,11 +81,13 @@ export default function Introduction({
   return (
     <MainLayout>
       <div ref={mergedRef} className="relative flex justify-center items-center w-full max-w-[350px] -my-10">
-        <div
+        <motion.div // Diubah dari div menjadi motion.div
           ref={bismillah.ref} // Tetap gunakan bismillah.ref untuk animasi internal
+          animate={bismillah.isVisible ? { scaleX: 0 } : { scaleX: 1 }} // Animasi ditambahkan kembali
+          transition={{ type: "tween", duration: 0.7, delay: 0.2 }} // Transisi ditambahkan kembali
           className="absolute w-full h-20 bg-white origin-right"
         />
-        <img src="/bismillah.png" alt="bismillah" />
+        <img src="/bismillah.png" alt="bismillah" /> {/* Jalur src diperbaiki di sini */}
       </div>
 
       <div className="text-center flex flex-col items-center px-4">
@@ -140,10 +142,7 @@ export default function Introduction({
             windowWidth={windowWidth} // windowWidth diteruskan ke ButtonAnimate
             img="/calendar.png"
             onClick={() => {
-              window.open(
-                "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MGc5OGIyb2tjMmY0NGtlMWg4bzI2aDY0dnUgMWJiNTJjNGUyOTMyNWY3MDRmNDJjMjM5NjIyM2I2NTFhOTZiMTg3ZGUyYzYzMzk1NTI2MGQ1ZjQxNjE5ZThiMEBn&tmsrc=1bb52c4e29325f704f42c2396223b651a96b187de2c633955260d5f41619e8b0%40group.calendar.google.com",
-                "_blank"
-              );
+              window.open("https://calendar.app.google/Z8o9rghtfimQLox89", "_blank");
             }}
           >
             Ingatkan Via Google Kalender
