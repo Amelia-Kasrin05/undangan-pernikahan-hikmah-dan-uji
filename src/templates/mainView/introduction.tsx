@@ -109,7 +109,7 @@ export default function Introduction({
           refDesc={desc1.ref}
           isDescInVIew={desc1.isVisible}
           name="Hikmah Suciani, S.Pd ,Gr"
-          desc="Putri Pertama dari Bapak Mufrinal, S.Pd.I dan Ibu Kasmaweni"
+          desc="Putri Pertama dari Bapak Mufrinal, S.Pd. SD dan Ibu Wendri Kasmaweni"
           instagramLink="https://www.instagram.com/hikmahsucianii?igsh=MTd5YWU4YTFzN21sdw=="
         />
 
