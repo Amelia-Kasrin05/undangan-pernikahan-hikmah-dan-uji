@@ -15,6 +15,7 @@ import Gift from "../mainView/gift";
 import Schedule from "../mainView/schedule";
 import Comment from "../mainView/comment";
 import Rsvp from "../mainView/rsvp";
+import LoveStory from "../mainView/loveStory"; // Import komponen baru
 
 export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: any }) {
   const windowWidth = useWindowWidth(); // windowWidth digunakan di sini
@@ -24,11 +25,14 @@ export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: an
   const refLocation = useRef(null);
   const refSchedule = useRef(null);
   const refComment = useRef(null);
+  const refLoveStory = useRef(null); // Ref baru untuk Love Story
 
   const [name, setName] = useState("");
   useEffect(() => {
     const path = window.location.pathname;
-    const name = path?.split("/")[1].split("-").join(" ");
+    const name = decodeURIComponent(path?.split("/")[1] || "")
+      .split("-")
+      .join(" ");
     setName(name);
   }, []);
 
@@ -100,9 +104,10 @@ export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: an
             <Doa />
             {/* <Memorable windowWidth={windowWidth} refImage={refImage} /> */}
             <Gift />
+            <LoveStory refLoveStory={refLoveStory} /> {/* Dipindahkan ke atas RSVP */}
             <Rsvp name={name} />
             <Comment refComment={refComment} name={name} />
-            <EndFooter />
+            <EndFooter /> {/* Prop 'name' dihapus di sini */}
           </React.Fragment>
         )}
       </motion.div>
