@@ -1,67 +1,110 @@
-"use client";
+"use client"
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import Opening from "../mainView/opening";
-import Introduction from "../mainView/introduction";
-import useWindowWidth from "../../services/hooks/useWindowWidth"; // Pastikan ini diimpor
-import StartAnimation from "../components/startAnimation";
-import Location from "../mainView/location";
-import Doa from "../mainView/doa";
-import EndFooter from "../mainView/endFooter";
-import Navbar from "./navbar";
-import Gift from "../mainView/gift";
-import Schedule from "../mainView/schedule";
-import Comment from "../mainView/comment";
-import Rsvp from "../mainView/rsvp";
-import LoveStory from "../mainView/loveStory"; // Import komponen baru
+import React, { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import Opening from "../mainView/opening"
+import Introduction from "../mainView/introduction"
+import useWindowWidth from "../../services/hooks/useWindowWidth"
+import StartAnimation from "../components/startAnimation"
+import Location from "../mainView/location"
+import Doa from "../mainView/doa"
+import EndFooter from "../mainView/endFooter"
+import Navbar from "./navbar"
+import Gift from "../mainView/gift"
+import Schedule from "../mainView/schedule"
+import Comment from "../mainView/comment"
+import Rsvp from "../mainView/rsvp"
+import LoveStory from "../mainView/loveStory"
 
 export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: any }) {
-  const windowWidth = useWindowWidth(); // windowWidth digunakan di sini
+  const windowWidth = useWindowWidth()
 
-  const refHome = useRef(null);
-  const refBride = useRef(null);
-  const refLocation = useRef(null);
-  const refSchedule = useRef(null);
-  const refComment = useRef(null);
-  const refLoveStory = useRef(null); // Ref baru untuk Love Story
+  const refHome = useRef(null)
+  const refBride = useRef(null)
+  const refLocation = useRef(null)
+  const refSchedule = useRef(null)
+  const refComment = useRef(null)
+  const refLoveStory = useRef(null)
 
-  const [name, setName] = useState("");
+  const [isScrolling, setIsScrolling] = useState(false)
+  const scrollAnimationRef = useRef<number | null>(null)
+
+  const [name, setName] = useState("")
   useEffect(() => {
-    const path = window.location.pathname;
+    const path = window.location.pathname
     const name = decodeURIComponent(path?.split("/")[1] || "")
       .split("-")
-      .join(" ");
-    setName(name);
-  }, []);
+      .join(" ")
+    setName(name)
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
-      StartAnimation();
+      StartAnimation()
     }
-  }, [isOpen]);
+  }, [isOpen])
 
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true)
 
   const handleAudio = () => {
     if (audio?.current) {
       if (audio?.current?.paused) {
-        audio?.current?.play();
-        setIsPlaying(true);
+        audio?.current?.play()
+        setIsPlaying(true)
       } else {
-        audio?.current?.pause();
-        setIsPlaying(false);
+        audio?.current?.pause()
+        setIsPlaying(false)
       }
     }
-  };
+  }
+
+  const handleScrollDown = () => {
+    if (isScrolling) {
+      if (scrollAnimationRef.current) {
+        cancelAnimationFrame(scrollAnimationRef.current)
+        scrollAnimationRef.current = null
+      }
+      setIsScrolling(false)
+      return
+    }
+
+    setIsScrolling(true)
+    const startPosition = window.pageYOffset
+    const targetPosition = document.documentElement.scrollHeight - window.innerHeight
+    const distance = targetPosition - startPosition
+
+    const scrollSpeed = 50 // pixel per detik
+    const duration = Math.max((distance / scrollSpeed) * 1000, 500) // minimal 0.5 detik
+
+    let startTime: number | null = null
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime
+      const timeElapsed = currentTime - startTime
+      const progress = Math.min(timeElapsed / duration, 1)
+
+      const ease = progress * (2 - progress) // easeOutQuad
+      const currentPosition = startPosition + distance * ease
+      window.scrollTo(0, currentPosition)
+
+      if (progress < 1) {
+        scrollAnimationRef.current = requestAnimationFrame(animation)
+      } else {
+        setIsScrolling(false)
+        scrollAnimationRef.current = null
+      }
+    }
+
+    scrollAnimationRef.current = requestAnimationFrame(animation)
+  }
 
   useEffect(() => {
     if (!audio?.current) {
-      return;
+      return
     }
-    audio?.current?.play();
-  }, []);
+    audio?.current?.play()
+  }, [audio])
 
   return (
     <React.Fragment>
@@ -71,7 +114,7 @@ export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: an
           isOpen && {
             opacity: 1,
             display: "block",
-            transition: { duration: 0.5, opacity: { delay: 1.2 } }, //1.2
+            transition: { duration: 0.5, opacity: { delay: 1.2 } },
           }
         }
         className="max-w-xl w-full h-full opacity-0"
@@ -90,27 +133,80 @@ export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: an
             }}
           />
         </div>
-        {/* WELCOME */}
         {isOpen && (
           <React.Fragment>
-            <button onClick={handleAudio} className="fixed right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white text-blue-400 shadow-xl outline-none p-2 z-10">
-              {isPlaying ? <img src="/icons/pause.png" alt="" className="w-full h-full" /> : <img src="/icons/play.png" alt="" className="w-full h-full" />}
-            </button>
-            <Navbar refHome={refHome} refBride={refBride} refLocation={refLocation} refSchedule={refSchedule} refComment={refComment} />
+            <div className="fixed right-2 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
+              <button
+                onClick={handleAudio}
+                className={`w-12 h-12 rounded-full shadow-lg outline-none flex items-center justify-center transition-all duration-300 transform hover:scale-105 ${
+                  isPlaying
+                    ? "bg-gradient-to-r from-green-400 to-emerald-500 text-white shadow-green-200 hover:from-green-500 hover:to-emerald-600"
+                    : "bg-gradient-to-r from-gray-400 to-slate-500 text-white shadow-gray-200 hover:from-gray-500 hover:to-slate-600"
+                }`}
+                title={isPlaying ? "Pause audio" : "Play audio"}
+              >
+                {isPlaying ? (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16" rx="1" />
+                    <rect x="14" y="4" width="4" height="16" rx="1" />
+                  </svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                )}
+              </button>
+
+              <button
+                onClick={handleScrollDown}
+                className={`w-12 h-12 rounded-full shadow-lg outline-none flex items-center justify-center transition-all duration-300 transform hover:scale-105 ${
+                  isScrolling
+                    ? "bg-gradient-to-r from-orange-400 to-red-500 text-white shadow-orange-200 animate-pulse"
+                    : "bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-blue-200 hover:from-blue-500 hover:to-blue-700"
+                }`}
+                title={isScrolling ? "Stop scroll" : "Scroll ke bawah"}
+              >
+                {isScrolling ? (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="6" width="12" height="12" rx="2" />
+                  </svg>
+                ) : (
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 5v14" />
+                    <path d="m19 12-7 7-7-7" />
+                  </svg>
+                )}
+              </button>
+            </div>
+            <Navbar
+              refHome={refHome}
+              refBride={refBride}
+              refLocation={refLocation}
+              refSchedule={refSchedule}
+              refComment={refComment}
+            />
             <Opening refHome={refHome} />
             <Introduction windowWidth={windowWidth} refBride={refBride} />
             <Location refLocation={refLocation} />
             <Schedule refSchedule={refSchedule} />
             <Doa />
-            {/* <Memorable windowWidth={windowWidth} refImage={refImage} /> */}
             <Gift />
-            <LoveStory refLoveStory={refLoveStory} /> {/* Dipindahkan ke atas RSVP */}
+            <LoveStory refLoveStory={refLoveStory} />
             <Rsvp name={name} />
             <Comment refComment={refComment} name={name} />
-            <EndFooter /> {/* Prop 'name' dihapus di sini */}
+            <EndFooter />
           </React.Fragment>
         )}
       </motion.div>
     </React.Fragment>
-  );
+  )
 }
