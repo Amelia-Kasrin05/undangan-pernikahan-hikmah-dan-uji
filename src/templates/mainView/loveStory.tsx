@@ -45,47 +45,41 @@ export default function LoveStory({ refLoveStory }: { refLoveStory: any }) {
     <MainLayout className="text-center gap-5" height="h-full">
       <section ref={refLoveStory}>
         {/* Judul dengan style yang sama seperti Wedding Gift */}
-        <motion.h1
-          ref={title.ref}
-          animate={title.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.7 }}
-          className="latin-25" // Menggunakan class yang sama seperti Wedding Gift
-        >
+        <motion.h1 ref={title.ref} animate={title.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }} transition={{ duration: 0.7 }} className="latin-25">
           Love Story
         </motion.h1>
 
-        <div className="w-full h-full flex flex-col gap-8 z-10 relative p-4 pb-4">
+        {/* Container dengan padding minimal untuk full width */}
+        <div className="w-full h-full flex flex-col gap-6 z-10 relative px-1 pb-4">
           {/* Timeline container */}
           <div className="relative w-full">
-            {/* Main vertical line - positioned on the left, warna abu-abu */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-400"></div>
+            {/* Main vertical line - digeser lebih ke kiri */}
+            <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gray-400"></div>
 
             {/* Story items */}
-            <div className="space-y-12">
+            <div className="space-y-6">
               {stories.map((story, index) => (
                 <div key={index} className="relative flex items-start">
-                  {/* Timeline dot - warna abu-abu */}
-                  <motion.div initial={{ scale: 0 }} animate={story.ref.isVisible ? { scale: 1 } : { scale: 0 }} transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }} className="absolute left-7 w-3 h-3 bg-gray-400 rounded-full z-10" />
+                  {/* Timeline dot - digeser lebih ke kiri */}
+                  <motion.div initial={{ scale: 0 }} animate={story.ref.isVisible ? { scale: 1 } : { scale: 0 }} transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }} className="absolute left-2.5 w-3 h-3 bg-gray-400 rounded-full z-10" />
 
-                  {/* Horizontal line connecting to content - warna abu-abu */}
+                  {/* Horizontal line connecting to content */}
                   <motion.div
                     initial={{ scaleX: 0 }}
                     animate={story.ref.isVisible ? { scaleX: 1 } : { scaleX: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                    className="absolute left-8 top-1.5 w-8 h-0.5 bg-gray-400 origin-left"
+                    className="absolute left-3 top-1.5 w-8 h-0.5 bg-gray-400 origin-left"
                   />
 
-                  {/* Content */}
-                  <div ref={story.ref.ref} className="ml-20 flex-1">
+                  {/* Content - margin kiri dikurangi untuk lebih full */}
+                  <div ref={story.ref.ref} className="ml-12 flex-1 pr-1">
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
                       animate={story.ref.isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                       transition={{ duration: 0.7, delay: 0.6 + index * 0.1 }}
-                      className="bg-white p-6 rounded-lg shadow-md border-l-4 border-gray-400"
+                      className="bg-white p-4 rounded-lg shadow-md border-l-4 border-gray-400 w-full"
                     >
-                      {/* Bagian tahun dihapus */}
-                      <h3 className="text-lg font-bold text-black mb-3">{story.title}</h3>
-                      {/* Teks dengan justify alignment seperti Wedding Gift - warna hitam */}
+                      <h3 className="text-lg font-bold text-black mb-3 text-left">{story.title}</h3>
                       <p className="text-black leading-relaxed text-sm text-justify">{story.content}</p>
                     </motion.div>
                   </div>

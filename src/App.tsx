@@ -58,37 +58,23 @@ function App() {
           element={
             <>
               <Helmet>
-                <meta
-                  property="og:title"
-                  content="The Wedding Of Hikmah and Uji"
-                />
+                <meta property="og:title" content="The Wedding Of Hikmah and Uji" />
                 <meta property="og:description" content="19 Oktober 2024" />
                 <meta property="og:image" content="/images/welcome.jpg" />
-                <meta
-                  property="og:image"
-                  content="https://firebasestorage.googleapis.com/v0/b/tinadewatest.appspot.com/o/welcome.jpg?alt=media&token=0a31ad8b-275d-4488-b0a7-248c6adc9245"
-                />
-                <meta
-                  property="og:image:alt"
-                  content="The image is an image of the bride"
-                />
+                <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/tinadewatest.appspot.com/o/welcome.jpg?alt=media&token=0a31ad8b-275d-4488-b0a7-248c6adc9245" />
+                <meta property="og:image:alt" content="The image is an image of the bride" />
                 <meta property="og:image:type" content="image/jpg" />
                 <meta property="og:image:width" content="1080" />
                 <meta property="og:image:height" content="1080" />
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="Uji & Hikmah" />
-                <meta
-                  property="og:url"
-                  content="https://tinandewa.vercel.app/"
-                />
+                <meta property="og:url" content="https://tinandewa.vercel.app/" />
                 <meta http-equiv="cache-control" content="no-cache" />
                 <meta http-equiv="pragma" content="no-cache" />
                 <meta http-equiv="expires" content="0" />
               </Helmet>
               <Toaster reverseOrder={true} position="top-right" gutter={2} />
-              <div
-                className={`relative w-full min-h-[100dvh] overflow-hidden flex flex-col items-center bg-black z-0`}
-              >
+              <div className={`relative w-full min-h-[100dvh] overflow-hidden flex flex-col items-center bg-black z-0`}>
                 <motion.div
                   initial={{ opacity: 1 }}
                   animate={
@@ -108,11 +94,7 @@ function App() {
                   }}
                 />
                 <MainView isOpen={isOpen} audio={audioRef} />
-                <WelcomeView
-                  setIsOpen={setIsOpen}
-                  isOpen={isOpen}
-                  audio={audioRef}
-                />
+                <WelcomeView setIsOpen={setIsOpen} isOpen={isOpen} audio={audioRef} />
                 <IntroView />
               </div>
               {/* <audio
