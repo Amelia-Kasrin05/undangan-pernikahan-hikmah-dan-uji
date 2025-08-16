@@ -1,25 +1,20 @@
-"use client"
+"use client";
 
-import useVisibility from "../../services/hooks/useVisibility"
-import MainLayout from "../components/mainLayout"
-import { motion } from "framer-motion"
+import useVisibility from "../../services/hooks/useVisibility";
+import MainLayout from "../components/mainLayout";
+import { motion } from "framer-motion";
 
 export default function Schedule({ refSchedule }: { refSchedule: any }) {
-  const text1 = useVisibility() // Untuk "Susunan Acara"
-  const text3 = useVisibility() // Untuk "06 September 2025" dan isinya
+  const text1 = useVisibility(); // Untuk "Susunan Acara"
+  const text3 = useVisibility(); // Untuk "06 September 2025" dan isinya
 
   return (
     <MainLayout className="gap-5" height="h-full">
       <section ref={refSchedule}>
-        <motion.h1
-          ref={text1.ref}
-          animate={text1.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-          transition={{ duration: 0.7 }}
-          className="latin-20 z-10 text-center"
-        >
+        <motion.h1 ref={text1.ref} animate={text1.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }} transition={{ duration: 0.7 }} className="latin-20 z-10 text-center">
           Susunan Acara
         </motion.h1>
-        
+
         <div className="w-full h-full flex flex-col gap-5 z-10 relative px-4 pb-4">
           {/* Tanggal Header */}
           <div className="relative h-full w-full flex flex-col items-center">
@@ -31,7 +26,7 @@ export default function Schedule({ refSchedule }: { refSchedule: any }) {
             >
               06 September 2025
             </motion.h2>
-            
+
             {/* Timeline Container - Centered dan Balanced */}
             <div className="relative w-full max-w-lg mx-auto flex flex-col items-center">
               {/* Main vertical line - Centered */}
@@ -75,12 +70,7 @@ export default function Schedule({ refSchedule }: { refSchedule: any }) {
                 {/* Akad Nikah - Right side */}
                 <div className="absolute top-8 left-1/2 ml-4 sm:ml-6 w-40 sm:w-48">
                   {/* Title */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={text3.isVisible ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ duration: 0.4, delay: 1 }}
-                    className="mb-3"
-                  >
+                  <motion.div initial={{ opacity: 0 }} animate={text3.isVisible ? { opacity: 1 } : { opacity: 0 }} transition={{ duration: 0.4, delay: 1 }} className="mb-3">
                     <motion.p
                       initial={{ opacity: 0, x: -20 }}
                       animate={text3.isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
@@ -92,17 +82,8 @@ export default function Schedule({ refSchedule }: { refSchedule: any }) {
                   </motion.div>
 
                   {/* Time and Icon */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={text3.isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ duration: 0.7, delay: 1.2 }}
-                    className="flex items-center gap-2 text-gray-600"
-                  >
-                    <img 
-                      src="/images/ring.png" 
-                      alt="ring" 
-                      className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" 
-                    />
+                  <motion.div initial={{ opacity: 0, x: -20 }} animate={text3.isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }} transition={{ duration: 0.7, delay: 1.2 }} className="flex items-center gap-2 text-gray-600">
+                    <img src="/images/ring.png" alt="ring" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
                     <span className="text-xs sm:text-sm font-medium">09:00 WIB - Selesai</span>
                   </motion.div>
 
@@ -118,12 +99,7 @@ export default function Schedule({ refSchedule }: { refSchedule: any }) {
                 {/* Resepsi - Left side */}
                 <div className="absolute top-32 sm:top-36 right-1/2 mr-4 sm:mr-6 w-40 sm:w-48 text-right">
                   {/* Title */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={text3.isVisible ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ duration: 0.4, delay: 1.6 }}
-                    className="mb-3"
-                  >
+                  <motion.div initial={{ opacity: 0 }} animate={text3.isVisible ? { opacity: 1 } : { opacity: 0 }} transition={{ duration: 0.4, delay: 1.6 }} className="mb-3">
                     <motion.p
                       initial={{ opacity: 0, x: 20 }}
                       animate={text3.isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
@@ -135,18 +111,9 @@ export default function Schedule({ refSchedule }: { refSchedule: any }) {
                   </motion.div>
 
                   {/* Time and Icon */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={text3.isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                    transition={{ duration: 0.7, delay: 1.8 }}
-                    className="flex items-center justify-end gap-2 text-gray-600"
-                  >
+                  <motion.div initial={{ opacity: 0, x: 20 }} animate={text3.isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }} transition={{ duration: 0.7, delay: 1.8 }} className="flex items-center justify-end gap-2 text-gray-600">
                     <span className="text-xs sm:text-sm font-medium">11:00 WIB - Selesai</span>
-                    <img 
-                      src="/images/reception.png" 
-                      alt="reception" 
-                      className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" 
-                    />
+                    <img src="/images/reception.png" alt="reception" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
                   </motion.div>
 
                   {/* Connector line to timeline */}
@@ -163,5 +130,5 @@ export default function Schedule({ refSchedule }: { refSchedule: any }) {
         </div>
       </section>
     </MainLayout>
-  )
+  );
 }
