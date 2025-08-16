@@ -45,7 +45,7 @@ export default function ProfileCard({
           animate={isImageInVIew ? { opacity: 1 } : { opacity: 0 }}
           className="w-full h-full rounded-full bg-gray-500 overflow-hidden border-4 border-white shadow-inner"
           style={{
-            backgroundImage: isFemale ? "url('/images/female.jpg')" : "url('/images/male.jpg')",
+            backgroundImage: isFemale ? "url('/images/female.webp')" : "url('/images/male.webp')",
             backgroundRepeat: "no-repeat",
             backgroundPosition: isFemale ? "center 15%" : "center 12%",
             backgroundSize: "cover",
