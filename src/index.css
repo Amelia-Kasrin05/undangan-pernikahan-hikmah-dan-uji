@@ -119,37 +119,6 @@ button {
   }
 }
 
-/* Legacy animations - keeping for compatibility */
-.dewa {
-  fill-opacity: 0;
-  stroke: #986a52;
-  stroke-width: 0px;
-  stroke-dasharray: 4500;
-  animation: draw 7s ease 1.5s forwards;
-  max-width: 350px;
-  width: 100%;
-}
-
-.tina {
-  fill-opacity: 0;
-  stroke: #986a52;
-  stroke-width: 0px;
-  stroke-dasharray: 4500;
-  width: 100%;
-  max-width: 300px;
-  animation: draw 10s ease forwards;
-}
-
-.dan {
-  fill-opacity: 0;
-  stroke: #986a52;
-  stroke-width: 0px;
-  stroke-dasharray: 4500;
-  width: 100%;
-  max-width: 300px;
-  animation: draw 8s ease 1s forwards;
-}
-
 @keyframes draw {
   0% {
     stroke-dashoffset: 4500;
