@@ -55,20 +55,34 @@ export default function ProfileCard({
         <div className="absolute inset-0 rounded-full border-2 border-white/30 animate-pulse" />
       </motion.div>
 
-      {/* Enhanced Name with better typography */}
-      <div className="text-center space-y-2 w-full max-w-[350px] mx-auto px-2">
-        <h1 ref={refName} className="relative text-base sm:text-lg md:text-xl font-bold text-blue-400 tracking-wide whitespace-nowrap overflow-hidden">
+      {/* Enhanced Name with better typography and larger size */}
+      <div className="text-center space-y-2 w-full max-w-[360px] mx-auto px-2">
+        <h1 
+          ref={refName} 
+          className="relative text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-400 tracking-wide leading-tight"
+          style={{
+            // Menggunakan clamp untuk responsivitas yang lebih baik
+            fontSize: "clamp(1.25rem, 5vw, 2rem)",
+            lineHeight: "1.1",
+            wordSpacing: "0.1em", // Memberikan sedikit ruang antar kata tanpa memisahkan
+          }}
+        >
           <span
-            className="drop-shadow-lg block"
+            className="drop-shadow-lg block whitespace-nowrap"
             style={{
               textShadow: "1px 1px 3px rgba(255,255,255,0.8), 2px 2px 4px rgba(0,0,0,0.3)",
-              fontSize: "clamp(1rem, 3.5vw, 1.25rem)",
+              // Pastikan teks tidak terpotong pada layar kecil
+              minWidth: "max-content",
             }}
           >
             {name}
           </span>
           {/* Tambahkan pointer-events-none agar tidak menghalangi klik */}
-          <motion.span animate={isNameInVIew ? { scaleX: 0 } : { scaleX: 1 }} transition={{ type: "tween", duration: 0.7, delay: 0.2 }} className="bg-white absolute top-0 left-0 w-full h-full origin-right pointer-events-none" />
+          <motion.span 
+            animate={isNameInVIew ? { scaleX: 0 } : { scaleX: 1 }} 
+            transition={{ type: "tween", duration: 0.7, delay: 0.2 }} 
+            className="bg-white absolute top-0 left-0 w-full h-full origin-right pointer-events-none" 
+          />
         </h1>
 
         {/* Instagram Link - Ditambahkan di sini */}
@@ -78,7 +92,7 @@ export default function ProfileCard({
             target="_blank"
             rel="noopener noreferrer"
             // Tambahkan relative dan z-10 untuk memastikan di atas elemen lain
-            className="relative z-10 flex items-center justify-center gap-2 text-gray-600 hover:text-blue-400 transition-colors duration-300 mt-2"
+            className="relative z-10 flex items-center justify-center gap-2 text-gray-600 hover:text-blue-400 transition-colors duration-300 mt-3"
             initial={{ opacity: 0, y: 10 }}
             animate={isNameInVIew ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }} // Animasi berdasarkan visibilitas nama
             transition={{ duration: 0.7, delay: 0.3 }}
@@ -89,7 +103,7 @@ export default function ProfileCard({
         )}
 
         {/* Enhanced decorative element - FIXED SIZE */}
-        <div className="relative w-[150px] h-8 mx-auto flex justify-center items-center">
+        <div className="relative w-[150px] h-8 mx-auto flex justify-center items-center mt-4">
           <motion.img
             ref={refFlower}
             transition={{ duration: 0.7, delay: 0.3 }}
@@ -107,8 +121,13 @@ export default function ProfileCard({
       </div>
 
       {/* Enhanced description */}
-      <footer className="max-w-[280px] text-center">
-        <motion.p ref={refDesc} transition={{ duration: 0.7, delay: 0.4 }} animate={isDescInVIew ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }} className="font-light text-gray-600 leading-relaxed text-sm px-2">
+      <footer className="max-w-[300px] text-center mt-2">
+        <motion.p 
+          ref={refDesc} 
+          transition={{ duration: 0.7, delay: 0.4 }} 
+          animate={isDescInVIew ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }} 
+          className="font-light text-gray-600 leading-relaxed text-sm px-2"
+        >
           {desc}
         </motion.p>
       </footer>

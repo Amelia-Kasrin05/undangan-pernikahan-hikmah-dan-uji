@@ -1,26 +1,6 @@
-/* IMPORT HARUS DI PALING ATAS */
-@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* FONT DEFINITIONS YANG BENAR */
-@font-face {
-  font-family: 'Great Vibes';
-  src: url('/fonts/GreatVibes-Regular.ttf') format('truetype');
-  font-display: swap;
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Besley';
-  src: url('/fonts/Besley-VariableFont_wght.ttf') format('truetype');
-  font-display: swap;
-  font-weight: 100 900; /* Variable font weight range */
-  font-style: normal;
-}
 
 /* FORCE LIGHT MODE - SIMPLIFIED */
 html {
@@ -50,6 +30,7 @@ body {
     background-color: #ffffff !important;
   }
 
+  /* Pastikan warna Tailwind tetap konsisten */
   .bg-white {
     background-color: #ffffff !important;
   }
@@ -79,6 +60,7 @@ body {
   }
 }
 
+/* Override untuk input dan form elements */
 input,
 textarea,
 select,
@@ -87,6 +69,7 @@ button {
   -webkit-color-scheme: light only !important;
 }
 
+/* Override untuk scrollbar */
 ::-webkit-scrollbar {
   background-color: #ffffff !important;
 }
@@ -95,6 +78,7 @@ button {
   background-color: #cccccc !important;
 }
 
+/* Animasi sederhana tanpa particle effects */
 .uji-animate {
   opacity: 0;
   animation: fadeInUp 1.2s ease-out 0.5s forwards;
@@ -178,68 +162,48 @@ button {
   }
 }
 
-/* DEFINISI FONT CLASS YANG BENAR */
+@font-face {
+  font-family: GreatVibes-Regular;
+  src: url(/fonts/GreatVibes-Regular.ttf);
+}
+@font-face {
+  font-family: Besley-VariableFont_wght;
+  src: url(/fonts/Besley-VariableFont_wght.ttf);
+}
+
 .besley-10 {
   font-weight: 300;
   font-size: 15px;
-  font-family: 'Besley', 'Georgia', serif;
+  font-family: Besley-VariableFont_wght;
   line-height: 1.2;
 }
-
 .besley-15 {
   font-weight: 300;
   font-size: 20px;
-  font-family: 'Besley', 'Georgia', serif;
+  font-family: Besley-VariableFont_wght;
   line-height: 1.2;
 }
-
 .latin-20 {
-  font-weight: 400;
+  font-weight: 300;
   font-size: 40px;
-  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-family: GreatVibes-Regular;
   line-height: 1.2;
 }
-
 .latin-25 {
-  font-weight: 400;
+  font-weight: 300;
   font-size: 45px;
-  font-family: 'Great Vibes', 'Brush Script MT', cursive;
+  font-family: GreatVibes-Regular;
   line-height: 1.2;
 }
 
-/* FONT LOADING OPTIMIZATION UNTUK MOBILE */
-@media (max-width: 768px) {
-  .latin-20,
-  .latin-25 {
-    font-display: swap;
-    /* Pastikan fallback yang baik */
-    font-family: 'Great Vibes', 'Brush Script MT', 'Lucida Handwriting', cursive;
-  }
-  
-  .besley-10,
-  .besley-15 {
-    font-display: swap;
-    /* Pastikan fallback yang baik */
-    font-family: 'Besley', 'Georgia', 'Times New Roman', serif;
-  }
-  
-  /* Preload hint untuk mobile */
-  .latin-20::before,
-  .latin-25::before {
-    content: '';
-    font-family: 'Great Vibes';
-    position: absolute;
-    left: -9999px;
-    visibility: hidden;
-  }
-}
-
+/* For Chrome, Safari, Edge, and Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
+/* For Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
 }
@@ -264,42 +228,4 @@ input[type="number"] {
   to {
     width: 100%;
   }
-}
-/* Tambahkan ke index.css - Font Loading Optimization */
-
-@font-face {
-  font-family: 'GreatVibes-Regular';
-  src: url('/fonts/GreatVibes-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* Memastikan font loading yang smooth */
-}
-
-/* Preload font untuk mencegah FOUT (Flash of Unstyled Text) */
-.font-preload {
-  font-family: 'GreatVibes-Regular', cursive, serif;
-  visibility: hidden;
-  position: absolute;
-  left: -9999px;
-}
-
-/* Animasi yang lebih smooth untuk intro */
-.intro-text {
-  font-family: 'GreatVibes-Regular', cursive, serif;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  will-change: transform, opacity; /* Optimize untuk animasi */
-}
-
-/* Fix untuk animasi yang tersendat */
-.smooth-animation {
-  backface-visibility: hidden;
-  perspective: 1000;
-  transform: translate3d(0, 0, 0); /* Force hardware acceleration */
-}
-
-/* Custom easing untuk animasi yang lebih natural */
-.custom-ease {
-  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
