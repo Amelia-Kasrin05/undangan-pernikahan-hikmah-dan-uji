@@ -25,6 +25,9 @@ export default function WelcomeView({
 
   return (
     <React.Fragment>
+      {/* Font preloader untuk memastikan font sudah loaded */}
+      <div className="font-preload">Hikmah & Uji</div>
+      
       <motion.div
         className="absolute max-w-xl w-full p-5 h-[100dvh] flex flex-col justify-center items-center bg-transparent gap-4 overflow-hidden"
         animate={isOpen && { display: "none", opacity: 0, transition: { delay: 1.2 } }}
@@ -53,12 +56,41 @@ export default function WelcomeView({
 
         <motion.div
           animate={isOpen && { scale: 3, y: -50, opacity: 0, transition: { duration: 1.5, delay: 0.6 } }}
-          className="flex items-center justify-center gap-2 text-white"
-          style={{ fontFamily: "GreatVibes-Regular" }}
+          className="flex items-center justify-center gap-3 text-white intro-text smooth-animation"
         >
-          <span className="text-5xl">Hikmah</span>
-          <span className="text-3xl mx-2">&</span>
-          <span className="text-5xl">Uji</span>
+          <span 
+            className="text-5xl md:text-6xl leading-none"
+            style={{
+              fontFamily: "GreatVibes-Regular, cursive, serif",
+              textRendering: "optimizeLegibility",
+              WebkitFontSmoothing: "antialiased",
+              MozOsxFontSmoothing: "grayscale",
+            }}
+          >
+            Hikmah
+          </span>
+          <span 
+            className="text-3xl md:text-4xl mx-1"
+            style={{
+              fontFamily: "GreatVibes-Regular, cursive, serif",
+              textRendering: "optimizeLegibility",
+              WebkitFontSmoothing: "antialiased",
+              MozOsxFontSmoothing: "grayscale",
+            }}
+          >
+            &
+          </span>
+          <span 
+            className="text-5xl md:text-6xl leading-none"
+            style={{
+              fontFamily: "GreatVibes-Regular, cursive, serif",
+              textRendering: "optimizeLegibility",
+              WebkitFontSmoothing: "antialiased",
+              MozOsxFontSmoothing: "grayscale",
+            }}
+          >
+            Uji
+          </span>
         </motion.div>
 
         <motion.p
@@ -80,7 +112,7 @@ export default function WelcomeView({
         <motion.button
           animate={isOpen && { opacity: 0, y: 30, transition: { duration: 0.5 } }}
           onClick={handleClick}
-          className={`p-[6px] px-4 bg-blue-400 text-white rounded-full mt-2 hover:bg-blue-400/80 ${windowWidth < 500 && "text-xs"}`}
+          className={`p-[6px] px-4 bg-blue-400 text-white rounded-full mt-2 hover:bg-blue-400/80 transition-all duration-300 transform hover:scale-105 ${windowWidth < 500 && "text-xs"}`}
         >
           Buka Undangan
         </motion.button>
