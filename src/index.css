@@ -2,17 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* FORCE LIGHT MODE - PRIORITAS TERTINGGI */
-:root {
-  color-scheme: light only !important;
-  -webkit-color-scheme: light only !important;
-}
-
+/* FORCE LIGHT MODE - SIMPLIFIED */
 html {
   color-scheme: light only !important;
   -webkit-color-scheme: light only !important;
   background-color: #ffffff !important;
-  color: #000000 !important;
 }
 
 body {
@@ -20,41 +14,20 @@ body {
   color-scheme: light only !important;
   -webkit-color-scheme: light only !important;
   background-color: #ffffff !important;
-  color: #000000 !important;
 }
 
-/* Override untuk semua elemen */
-*,
-*::before,
-*::after {
-  color-scheme: light only !important;
-  -webkit-color-scheme: light only !important;
-}
-
-/* Override khusus untuk dark mode dengan prioritas tertinggi */
+/* Override khusus untuk dark mode */
 @media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light only !important;
-    -webkit-color-scheme: light only !important;
-  }
-
   html {
     color-scheme: light only !important;
     -webkit-color-scheme: light only !important;
     background-color: #ffffff !important;
-    color: #000000 !important;
   }
 
   body {
     color-scheme: light only !important;
     -webkit-color-scheme: light only !important;
     background-color: #ffffff !important;
-    color: #000000 !important;
-  }
-
-  * {
-    color-scheme: light only !important;
-    -webkit-color-scheme: light only !important;
   }
 
   /* Pastikan warna Tailwind tetap konsisten */
@@ -103,21 +76,6 @@ button {
 
 ::-webkit-scrollbar-thumb {
   background-color: #cccccc !important;
-}
-
-/* WebKit/Safari specific */
-@supports (-webkit-touch-callout: none) {
-  html {
-    -webkit-color-scheme: light only !important;
-  }
-
-  body {
-    -webkit-color-scheme: light only !important;
-  }
-
-  * {
-    -webkit-color-scheme: light only !important;
-  }
 }
 
 /* Animasi sederhana tanpa particle effects */

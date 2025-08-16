@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Meta tags untuk mencegah dark mode - ENHANCED -->
+    <!-- Meta tags untuk mencegah dark mode -->
     <meta name="color-scheme" content="light only" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="msapplication-navbutton-color" content="#ffffff" />
     <meta name="apple-mobile-web-app-status-bar-style" content="light-content" />
-    <!-- END TAMBAHAN BARU -->
 
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -17,28 +16,18 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preload" href="/audio/Beautiful In White Compress.mp3" as="audio" />
 
-    <!-- FORCE LIGHT MODE STYLES -->
+    <!-- FORCE LIGHT MODE STYLES - SIMPLIFIED -->
     <style>
-      /* Force light mode dengan prioritas tertinggi */
       html {
         color-scheme: light only !important;
         -webkit-color-scheme: light only !important;
         background-color: #ffffff !important;
-        color: #000000 !important;
       }
 
       body {
         color-scheme: light only !important;
         -webkit-color-scheme: light only !important;
         background-color: #ffffff !important;
-        color: #000000 !important;
-      }
-
-      *,
-      *::before,
-      *::after {
-        color-scheme: light only !important;
-        -webkit-color-scheme: light only !important;
       }
 
       /* Override untuk dark mode system preference */
@@ -48,12 +37,6 @@
           color-scheme: light only !important;
           -webkit-color-scheme: light only !important;
           background-color: #ffffff !important;
-          color: #000000 !important;
-        }
-
-        * {
-          color-scheme: light only !important;
-          -webkit-color-scheme: light only !important;
         }
       }
 
@@ -78,7 +61,7 @@
     <title>Uji & Hikmah</title>
   </head>
 
-  <body style="color-scheme: light only !important; -webkit-color-scheme: light only !important; background-color: #ffffff !important; color: #000000 !important">
+  <body style="color-scheme: light only !important; -webkit-color-scheme: light only !important; background-color: #ffffff !important">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
