@@ -32,7 +32,7 @@ export default function ProfileCard({
   const isFemale = name.includes("Hikmah");
 
   return (
-    <main className="mt-12 mb-8 flex flex-col gap-4 items-center px-4">
+    <main className="mt-12 mb-8 flex flex-col gap-4 items-center px-2 w-full max-w-[380px] mx-auto">
       {/* Enhanced Profile Image */}
       <motion.div
         ref={refImage}
@@ -56,9 +56,17 @@ export default function ProfileCard({
       </motion.div>
 
       {/* Enhanced Name with better typography */}
-      <div className="text-center space-y-2">
-        <h1 ref={refName} className="relative text-3xl font-bold text-gray-800 tracking-wide">
-          <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent drop-shadow-sm">{name}</span>
+      <div className="text-center space-y-2 w-full max-w-[350px] mx-auto px-2">
+        <h1 ref={refName} className="relative text-base sm:text-lg md:text-xl font-bold text-blue-400 tracking-wide whitespace-nowrap overflow-hidden">
+          <span
+            className="drop-shadow-lg block"
+            style={{
+              textShadow: "1px 1px 3px rgba(255,255,255,0.8), 2px 2px 4px rgba(0,0,0,0.3)",
+              fontSize: "clamp(1rem, 3.5vw, 1.25rem)",
+            }}
+          >
+            {name}
+          </span>
           {/* Tambahkan pointer-events-none agar tidak menghalangi klik */}
           <motion.span animate={isNameInVIew ? { scaleX: 0 } : { scaleX: 1 }} transition={{ type: "tween", duration: 0.7, delay: 0.2 }} className="bg-white absolute top-0 left-0 w-full h-full origin-right pointer-events-none" />
         </h1>
@@ -70,7 +78,7 @@ export default function ProfileCard({
             target="_blank"
             rel="noopener noreferrer"
             // Tambahkan relative dan z-10 untuk memastikan di atas elemen lain
-            className="relative z-10 flex items-center justify-center gap-2 text-gray-600 hover:text-[#986a52] transition-colors duration-300 mt-2"
+            className="relative z-10 flex items-center justify-center gap-2 text-gray-600 hover:text-blue-400 transition-colors duration-300 mt-2"
             initial={{ opacity: 0, y: 10 }}
             animate={isNameInVIew ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }} // Animasi berdasarkan visibilitas nama
             transition={{ duration: 0.7, delay: 0.3 }}

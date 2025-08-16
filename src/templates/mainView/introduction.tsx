@@ -109,7 +109,7 @@ export default function Introduction({
           refDesc={desc1.ref}
           isDescInVIew={desc1.isVisible}
           name="Hikmah Suciani, S.Pd ,Gr"
-          desc="Putri Pertama dari Bapak Mufrinal, S.Pd. SD dan Ibu Wendri Kasmaweni"
+          desc="Putri Pertama dari Bapak Mufrinal, S.Pd.I dan Ibu Kasmaweni"
           instagramLink="https://www.instagram.com/hikmahsucianii?igsh=MTd5YWU4YTFzN21sdw=="
         />
 
@@ -128,7 +128,7 @@ export default function Introduction({
         />
 
         <footer className="mx-5 mt-10 flex flex-col gap-10">
-          <p className="text-gray-500">Sabtu, 06 September 2025</p>
+          <p className="text-gray-600 text-lg sm:text-xl md:text-2xl font-medium">Sabtu, 06 September 2025</p>
 
           <div ref={countdown.ref} className="flex gap-3 justify-center">
             <CountdownCard isInView={countdown.isVisible} num={time.days} desc="Days" />
@@ -142,7 +142,10 @@ export default function Introduction({
             windowWidth={windowWidth} // windowWidth diteruskan ke ButtonAnimate
             img="/calendar.png"
             onClick={() => {
-              window.open("https://calendar.app.google/Z8o9rghtfimQLox89", "_blank");
+              window.open(
+                "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MGc5OGIyb2tjMmY0NGtlMWg4bzI2aDY0dnUgMWJiNTJjNGUyOTMyNWY3MDRmNDJjMjM5NjIyM2I2NTFhOTZiMTg3ZGUyYzYzMzk1NTI2MGQ1ZjQxNjE5ZThiMEBn&tmsrc=1bb52c4e29325f704f42c2396223b651a96b187de2c633955260d5f41619e8b0%40group.calendar.google.com",
+                "_blank"
+              );
             }}
           >
             Ingatkan Via Google Kalender

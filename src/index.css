@@ -2,6 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 
+/* FORCE LIGHT MODE - PRIORITAS TERTINGGI */
+:root {
+  color-scheme: light only !important;
+  -webkit-color-scheme: light only !important;
+}
+
+html {
+  color-scheme: light only !important;
+  -webkit-color-scheme: light only !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body {
+  font-family: "Comic Neue", cursive;
+  color-scheme: light only !important;
+  -webkit-color-scheme: light only !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Override untuk semua elemen */
+*,
+*::before,
+*::after {
+  color-scheme: light only !important;
+  -webkit-color-scheme: light only !important;
+}
+
+/* Override khusus untuk dark mode dengan prioritas tertinggi */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light only !important;
+    -webkit-color-scheme: light only !important;
+  }
+
+  html {
+    color-scheme: light only !important;
+    -webkit-color-scheme: light only !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  body {
+    color-scheme: light only !important;
+    -webkit-color-scheme: light only !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  * {
+    color-scheme: light only !important;
+    -webkit-color-scheme: light only !important;
+  }
+
+  /* Pastikan warna Tailwind tetap konsisten */
+  .bg-white {
+    background-color: #ffffff !important;
+  }
+
+  .text-black {
+    color: #000000 !important;
+  }
+
+  .text-gray-700 {
+    color: #374151 !important;
+  }
+
+  .text-gray-600 {
+    color: #4b5563 !important;
+  }
+
+  .text-gray-500 {
+    color: #6b7280 !important;
+  }
+
+  .text-gray-400 {
+    color: #9ca3af !important;
+  }
+
+  .text-blue-400 {
+    color: #60a5fa !important;
+  }
+}
+
+/* Override untuk input dan form elements */
+input,
+textarea,
+select,
+button {
+  color-scheme: light only !important;
+  -webkit-color-scheme: light only !important;
+}
+
+/* Override untuk scrollbar */
+::-webkit-scrollbar {
+  background-color: #ffffff !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cccccc !important;
+}
+
+/* WebKit/Safari specific */
+@supports (-webkit-touch-callout: none) {
+  html {
+    -webkit-color-scheme: light only !important;
+  }
+
+  body {
+    -webkit-color-scheme: light only !important;
+  }
+
+  * {
+    -webkit-color-scheme: light only !important;
+  }
+}
+
 /* Animasi sederhana tanpa particle effects */
 .uji-animate {
   opacity: 0;
@@ -124,11 +242,6 @@
 @font-face {
   font-family: Besley-VariableFont_wght;
   src: url(/fonts/Besley-VariableFont_wght.ttf);
-}
-
-html,
-body {
-  font-family: "Comic Neue", cursive;
 }
 
 .besley-10 {
