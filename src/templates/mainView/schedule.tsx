@@ -108,19 +108,6 @@ export default function Schedule({ refSchedule }: { refSchedule: any }) {
             </motion.div>
           </div>
 
-          {/* Decorative Heart Bottom - Mengganti dots */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20, scale: 0.8 }}
-            animate={text3.isVisible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 2, type: "spring", damping: 15 }}
-            className="flex justify-center mt-8"
-          >
-            <div className="relative">
-              <div className="text-2xl text-pink-400 animate-pulse">💕</div>
-              {/* Subtle glow effect */}
-              <div className="absolute inset-0 text-2xl text-pink-200 blur-sm animate-pulse">💕</div>
-            </div>
-          </motion.div>
         </div>
       </section>
     </MainLayout>
