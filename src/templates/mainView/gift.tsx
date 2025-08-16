@@ -11,13 +11,6 @@ export default function Gift() {
 
   const text1 = useVisibility();
   const text2 = useVisibility();
-  const image = useVisibility();
-  const text3 = useVisibility();
-  const text4 = useVisibility();
-
-  // Visibilitas untuk logo bank
-  const briLogoAnim = useVisibility();
-  const bcaLogoAnim = useVisibility();
 
   const toggleGift = () => {
     setIsExpanded(!isExpanded);
@@ -42,7 +35,7 @@ export default function Gift() {
           className={`
             px-6 py-3 rounded-full font-medium text-white transition-all duration-300 transform
             flex items-center gap-2 hover:scale-105 shadow-lg
-            ${isExpanded ? "bg-red-500 hover:bg-red-600" : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"}
+            ${isExpanded ? "bg-red-500 hover:bg-red-600" : "bg-blue-400 hover:bg-blue-500"}
           `}
         >
           <svg className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
