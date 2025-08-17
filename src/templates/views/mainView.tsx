@@ -59,46 +59,54 @@ export default function MainView({ isOpen, audio }: { isOpen: boolean; audio: an
     }
   };
 
-  const handleScrollDown = () => {
-    if (isScrolling) {
-      if (scrollAnimationRef.current) {
-        cancelAnimationFrame(scrollAnimationRef.current);
-        scrollAnimationRef.current = null;
-      }
-      setIsScrolling(false);
-      return;
+const handleScrollDown = () => {
+  if (isScrolling) {
+    if (scrollAnimationRef.current) {
+      cancelAnimationFrame(scrollAnimationRef.current);
+      scrollAnimationRef.current = null;
     }
+    setIsScrolling(false);
+    return;
+  }
 
-    setIsScrolling(true);
-    const startPosition = window.pageYOffset;
-    const targetPosition = document.documentElement.scrollHeight - window.innerHeight;
-    const distance = targetPosition - startPosition;
+  setIsScrolling(true);
+  const startPosition = window.pageYOffset;
+  const targetPosition = document.documentElement.scrollHeight - window.innerHeight;
+  const distance = targetPosition - startPosition;
 
-    const scrollSpeed = 50; // pixel per detik
-    const duration = Math.max((distance / scrollSpeed) * 1000, 500); // minimal 0.5 detik
+  // KECEPATAN SANGAT SANGAT PELAN - SLOW MOTION
+  const baseSpeed = 1; // pixel per detik (super pelan seperti slow motion)
+  const minDuration = 20000; // minimal 20 detik
+  const maxDuration = 80000; // maksimal 60 detik (1 menit)
+  
+  const calculatedDuration = (distance / baseSpeed) * 1000;
+  const duration = Math.max(Math.min(calculatedDuration, maxDuration), minDuration);
 
-    let startTime: number | null = null;
+  let startTime: number | null = null;
 
-    const animation = (currentTime: number) => {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
+  const animation = (currentTime: number) => {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
 
-      const ease = progress * (2 - progress); // easeOutQuad
-      const currentPosition = startPosition + distance * ease;
-      window.scrollTo(0, currentPosition);
+    // Linear untuk kecepatan konsisten seperti slow motion
+    const currentPosition = startPosition + distance * progress;
+    
+    window.scrollTo({
+      top: currentPosition,
+      behavior: 'auto'
+    });
 
-      if (progress < 1) {
-        scrollAnimationRef.current = requestAnimationFrame(animation);
-      } else {
-        setIsScrolling(false);
-        scrollAnimationRef.current = null;
-      }
-    };
-
-    scrollAnimationRef.current = requestAnimationFrame(animation);
+    if (progress < 1) {
+      scrollAnimationRef.current = requestAnimationFrame(animation);
+    } else {
+      setIsScrolling(false);
+      scrollAnimationRef.current = null;
+    }
   };
 
+  scrollAnimationRef.current = requestAnimationFrame(animation);
+};
   useEffect(() => {
     if (!audio?.current) {
       return;

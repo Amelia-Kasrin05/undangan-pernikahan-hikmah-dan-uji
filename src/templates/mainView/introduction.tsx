@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import MainLayout from "../components/mainLayout";
 import ProfileCard from "../components/profileCard";
 import useVisibility from "../../services/hooks/useVisibility";
@@ -38,33 +38,43 @@ export default function Introduction({ refBride, windowWidth }: { refBride: any;
 
   const countdownDate = new Date("September 06, 2025 09:00:00").getTime();
 
-  const interval = setInterval(() => {
+  // FIX: Pindahkan interval ke useEffect dan bersihkan
+  useEffect(() => {
+    const updateDuration = (duration: number) => {
+      const days = Math.floor(duration / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((duration % (1000 * 60)) / 1000);
+      setTime({ days, hours, minutes, seconds });
+    };
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        updateDuration(0);
+        return;
+      }
+
+      updateDuration(distance);
+    }, 1000);
+
+    // Initial calculation
     const now = new Date().getTime();
     const distance = countdownDate - now;
+    updateDuration(distance > 0 ? distance : 0);
 
-    if (distance < 0) {
-      clearInterval(interval);
-      updateDuration(0);
-      return;
-    }
-
-    updateDuration(distance);
-  }, 1000);
-
-  const updateDuration = (duration: number) => {
-    const days = Math.floor(duration / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((duration % (1000 * 60)) / 1000);
-
-    setTime({ days, hours, minutes, seconds });
-  };
+    // Cleanup interval
+    return () => clearInterval(interval);
+  }, [countdownDate]);
 
   return (
     <MainLayout>
       <div ref={mergedRef} className="relative flex justify-center items-center w-full max-w-[350px] -my-10">
         <div className={`bismillah-overlay absolute w-full h-20 bg-white origin-right transition-transform duration-700 delay-200 ${bismillah.isVisible ? "scale-x-0" : "scale-x-100"}`} />
-        <img src="/bismillah.png" alt="bismillah" />
+       <img src="/bismillah.png" alt="bismillah" loading="lazy" />
       </div>
 
       <div className="text-center flex flex-col items-center px-4">
