@@ -8,13 +8,7 @@ import gsap from "gsap";
 import { CustomEase } from "gsap/all";
 import Schedule from "../navbar/schedule";
 
-export default function Navbar({
-  refHome,
-  refBride,
-  refLocation,
-  refSchedule,
-  refComment,
-}: any) {
+export default function Navbar({ refHome, refBride, refLocation, refSchedule, refComment }: any) {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const t1 = gsap.timeline();
@@ -32,10 +26,7 @@ export default function Navbar({
             clipPath: "circle(130px at 50% 50%)",
             y: 0,
             duration: 0.8,
-            ease: CustomEase.create(
-              "custom",
-              "M0,0 C0,0 0.251,0.503 0.501,0.753 0.751,1.003 1,1 1,1 "
-            ),
+            ease: CustomEase.create("custom", "M0,0 C0,0 0.251,0.503 0.501,0.753 0.751,1.003 1,1 1,1 "),
           },
           "-=0.35"
         )
@@ -142,18 +133,9 @@ export default function Navbar({
   return (
     <div className="fixed bottom-3 left-1/2 -translate-x-1/2 min-w-[3rem] h-12 flex justify-center items-center z-30 px-0">
       <div id="parentRounded" className="w-full h-full absolute rounded-full">
-        <div
-          id="rounded"
-          className="absolute w-full h-full bg-blue-400 rounded-full overflow-hidden"
-          style={{ clipPath: "circle(13px at 50% 50%)" }}
-        />
+        <div id="rounded" className="absolute w-full h-full bg-blue-400 rounded-full overflow-hidden" style={{ clipPath: "circle(13px at 50% 50%)" }} />
       </div>
-      <motion.div
-        id="bgRounded"
-        initial={{ clipPath: "circle(0px at 50% 50%)" }}
-        animate={{ clipPath: `circle(22px at ${xPosition}% 50%)` }}
-        className="w-full h-full absolute bg-blue-500 opacity-100"
-      />
+      <motion.div id="bgRounded" initial={{ clipPath: "circle(0px at 50% 50%)" }} animate={{ clipPath: `circle(22px at ${xPosition}% 50%)` }} className="w-full h-full absolute bg-blue-500 opacity-100" />
       <Home onClick={() => handleScroll("home")} />
       <Heart onClick={() => handleScroll("bride")} />
       <Location onClick={() => handleScroll("location")} />

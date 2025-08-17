@@ -1,42 +1,24 @@
 "use client";
 
 import type React from "react";
-import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import MainLayout from "../components/mainLayout";
 import ProfileCard from "../components/profileCard";
 import useVisibility from "../../services/hooks/useVisibility";
 import CountdownCard from "../components/countdownCard";
-import ButtonAnimate from "../ui/buttonAnimate"; // Jalur impor diperbaiki
+import ButtonAnimate from "../ui/buttonAnimate";
 
-export default function Introduction({
-  refBride,
-  windowWidth, // windowWidth ditambahkan kembali sebagai prop
-}: {
-  refBride: any;
-  windowWidth: number; // Tipe untuk windowWidth
-}) {
+export default function Introduction({ refBride, windowWidth }: { refBride: any; windowWidth: number }) {
   const bismillah = useVisibility();
-  const profileCard1 = useVisibility();
-  const profileCard2 = useVisibility();
-  const name1 = useVisibility();
-  const name2 = useVisibility();
-  const flower1 = useVisibility();
-  const flower2 = useVisibility();
   const countdown = useVisibility();
   const button = useVisibility();
-  const desc1 = useVisibility();
-  const desc2 = useVisibility();
 
-  // Menggabungkan refBride dan bismillah.ref
+  // Simplified ref merging
   const mergedRef = useCallback(
     (node: HTMLDivElement) => {
-      // Assign node to bismillah.ref
       if (bismillah.ref) {
         (bismillah.ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
       }
-
-      // Assign node to refBride (external ref)
       if (typeof refBride === "function") {
         refBride(node);
       } else if (refBride) {
@@ -81,13 +63,8 @@ export default function Introduction({
   return (
     <MainLayout>
       <div ref={mergedRef} className="relative flex justify-center items-center w-full max-w-[350px] -my-10">
-        <motion.div // Diubah dari div menjadi motion.div
-          ref={bismillah.ref} // Tetap gunakan bismillah.ref untuk animasi internal
-          animate={bismillah.isVisible ? { scaleX: 0 } : { scaleX: 1 }} // Animasi ditambahkan kembali
-          transition={{ type: "tween", duration: 0.7, delay: 0.2 }} // Transisi ditambahkan kembali
-          className="absolute w-full h-20 bg-white origin-right"
-        />
-        <img src="/bismillah.png" alt="bismillah" /> {/* Jalur src diperbaiki di sini */}
+        <div className={`bismillah-overlay absolute w-full h-20 bg-white origin-right transition-transform duration-700 delay-200 ${bismillah.isVisible ? "scale-x-0" : "scale-x-100"}`} />
+        <img src="/bismillah.png" alt="bismillah" />
       </div>
 
       <div className="text-center flex flex-col items-center px-4">
@@ -95,37 +72,12 @@ export default function Introduction({
 
         <p className="font-light text-gray-500 mb-8">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami.</p>
 
-        {/* Bagian "Kami yang berbahagia" - TERPISAH */}
         <p className="text-gray-600 mb-6">Kami yang berbahagia,</p>
 
-        {/* Profile Cards */}
-        <ProfileCard
-          refImage={profileCard1.ref}
-          refName={name1.ref}
-          isNameInVIew={name1.isVisible}
-          isImageInVIew={profileCard1.isVisible}
-          refFlower={flower1.ref}
-          isFlowerInVIew={flower1.isVisible}
-          refDesc={desc1.ref}
-          isDescInVIew={desc1.isVisible}
-          name="Hikmah Suciani, S.Pd ,Gr"
-          desc="Putri Pertama dari Bapak Mufrinal, S.Pd.I dan Ibu Kasmaweni"
-          instagramLink="https://www.instagram.com/hikmahsucianii?igsh=MTd5YWU4YTFzN21sdw=="
-        />
+        {/* Simplified Profile Cards - No complex refs */}
+        <ProfileCard name="Hikmah Suciani, S.Pd ,Gr" desc="Putri Pertama dari Bapak Mufrinal, S.Pd.I dan Ibu Kasmaweni" instagramLink="https://www.instagram.com/hikmahsucianii?igsh=MTd5YWU4YTFzN21sdw==" />
 
-        <ProfileCard
-          refImage={profileCard2.ref}
-          refName={name2.ref}
-          isNameInVIew={name2.isVisible}
-          isImageInVIew={profileCard2.isVisible}
-          refFlower={flower2.ref}
-          isFlowerInVIew={flower2.isVisible}
-          refDesc={desc2.ref}
-          isDescInVIew={desc2.isVisible}
-          name="Uji Purnomo Aji, S.P"
-          desc="Putra Ketiga dari Bapak Suyadi dan Ibu Sugiyanti"
-          instagramLink="https://www.instagram.com/sajakataji?igsh=MTFhZTlycDRtZng2OQ=="
-        />
+        <ProfileCard name="Uji Purnomo Aji, S.P" desc="Putra Ketiga dari Bapak Suyadi dan Ibu Sugiyanti" instagramLink="https://www.instagram.com/sajakataji?igsh=MTFhZTlycDRtZng2OQ==" />
 
         <footer className="mx-5 mt-10 flex flex-col gap-10">
           <p className="text-gray-600 text-lg sm:text-xl md:text-2xl font-medium">Sabtu, 06 September 2025</p>
@@ -139,7 +91,7 @@ export default function Introduction({
 
           <ButtonAnimate
             button={button}
-            windowWidth={windowWidth} // windowWidth diteruskan ke ButtonAnimate
+            windowWidth={windowWidth}
             img="/calendar.png"
             onClick={() => {
               window.open(

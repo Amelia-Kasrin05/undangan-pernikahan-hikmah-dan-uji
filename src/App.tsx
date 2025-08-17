@@ -59,7 +59,7 @@ function App() {
             <>
               <Helmet>
                 <meta property="og:title" content="The Wedding Of Hikmah and Uji" />
-                <meta property="og:description" content="19 Oktober 2024" />
+                <meta property="og:description" content="06 September 2025" />
                 <meta property="og:image" content="/images/welcome.jpg" />
                 <meta property="og:image:alt" content="The image is an image of the bride" />
                 <meta property="og:image:type" content="image/jpg" />
