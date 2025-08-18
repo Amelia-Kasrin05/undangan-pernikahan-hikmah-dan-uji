@@ -300,26 +300,3 @@ img {
 .font-preload {
   display: none !important;
 }
-/* Fix untuk bismillah agar tidak terpengaruh dark mode */
-img[alt="bismillah"] {
-  /* Pastikan bismillah selalu gelap di background putih */
-  filter: brightness(1) contrast(1) !important;
-  /* Atau gunakan invert jika gambar aslinya putih */
-  /* filter: invert(1) !important; */
-}
-
-/* Override khusus untuk dark mode - bismillah tetap gelap */
-@media (prefers-color-scheme: dark) {
-  img[alt="bismillah"] {
-    /* Jika gambar bismillah aslinya hitam/gelap, gunakan: */
-    filter: brightness(1) contrast(1) invert(0) !important;
-    
-    /* Jika gambar bismillah aslinya putih, gunakan: */
-    /* filter: invert(1) brightness(1) contrast(1) !important; */
-    
-    /* Atau bisa menggunakan background putih: */
-    background-color: #ffffff !important;
-    padding: 10px;
-    border-radius: 8px;
-  }
-}

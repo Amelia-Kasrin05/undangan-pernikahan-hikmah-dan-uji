@@ -7,6 +7,7 @@ import ProfileCard from "../components/profileCard";
 import useVisibility from "../../services/hooks/useVisibility";
 import CountdownCard from "../components/countdownCard";
 import ButtonAnimate from "../ui/buttonAnimate";
+import { motion } from "framer-motion";
 
 export default function Introduction({ refBride, windowWidth }: { refBride: any; windowWidth: number }) {
   const bismillah = useVisibility();
@@ -72,10 +73,19 @@ export default function Introduction({ refBride, windowWidth }: { refBride: any;
 
   return (
     <MainLayout>
-      <div ref={mergedRef} className="relative flex justify-center items-center w-full max-w-[350px] -my-10">
-        <div className={`bismillah-overlay absolute w-full h-20 bg-white origin-right transition-transform duration-700 delay-200 ${bismillah.isVisible ? "scale-x-0" : "scale-x-100"}`} />
-       <img src="/bismillah.png" alt="bismillah" loading="lazy" />
-      </div>
+      {/* Bismillah sebagai teks dengan animasi yang sama seperti doa */}
+      <motion.div
+        ref={mergedRef}
+        className="relative flex justify-center items-center w-full max-w-[350px] mb-6 text-center"
+        animate={
+          bismillah.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
+        }
+        transition={{ duration: 0.7 }}
+      >
+        <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl z-10 relative leading-relaxed">
+          بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+        </h1>
+      </motion.div>
 
       <div className="text-center flex flex-col items-center px-4">
         <p className="font-medium mb-4">Assalamu'alaikum Warahmatullaahi Wabarakaatuh</p>
