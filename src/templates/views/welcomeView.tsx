@@ -48,9 +48,9 @@ export default function WelcomeView({
             style={{
               backgroundImage: "url('/images/welcome.jpg')",
               backgroundRepeat: "no-repeat",
-              backgroundPosition: "center center",
+              backgroundPosition: "center 25%",
               backgroundSize: "cover",
-              transform: "scale(1.1)",
+              transform: "scale(1.05)",
             }}
           />
         </motion.div>
