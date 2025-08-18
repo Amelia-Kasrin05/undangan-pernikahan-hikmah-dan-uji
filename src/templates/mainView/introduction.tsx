@@ -76,13 +76,13 @@ export default function Introduction({ refBride, windowWidth }: { refBride: any;
       {/* Bismillah sebagai teks dengan animasi yang sama seperti doa */}
 <motion.div
         ref={mergedRef}
-        className="relative flex justify-center items-center w-full mb-6 text-center px-2"
+        className="relative flex justify-center items-center w-full mb-6 text-center px-4"
         animate={
           bismillah.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
         }
         transition={{ duration: 0.7 }}
       >
-        <h1 className="font-bold text-2xl xs:text-3xl sm:text-4xl md:text-5xl z-10 relative leading-relaxed whitespace-nowrap overflow-hidden text-ellipsis min-w-0">
+        <h1 className="font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl z-10 relative leading-relaxed whitespace-nowrap">
           بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
         </h1>
       </motion.div>
