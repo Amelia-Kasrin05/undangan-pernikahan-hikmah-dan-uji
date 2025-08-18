@@ -41,15 +41,16 @@ export default function WelcomeView({
 
         <motion.div
           animate={isOpen && { opacity: 0, y: -30, transition: { duration: 0.5, delay: 0.2 } }}
-          className="w-44 h-44 rounded-full overflow-hidden relative"
+          className="w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden relative shadow-2xl"
         >
           <motion.div
-            className="w-[110%] h-full absolute top-0 left-0"
+            className="w-full h-full absolute top-0 left-0"
             style={{
               backgroundImage: "url('/images/welcome.jpg')",
               backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
+              backgroundPosition: "center center",
               backgroundSize: "cover",
+              transform: "scale(1.1)",
             }}
           />
         </motion.div>
