@@ -74,17 +74,8 @@ export default function Introduction({ refBride, windowWidth }: { refBride: any;
   return (
     <MainLayout>
       {/* Bismillah sebagai teks dengan animasi yang sama seperti doa */}
-<motion.div
-        ref={mergedRef}
-        className="relative flex justify-center items-center w-full mb-6 text-center px-4"
-        animate={
-          bismillah.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }
-        }
-        transition={{ duration: 0.7 }}
-      >
-        <h1 className="font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl z-10 relative leading-relaxed whitespace-nowrap">
-          بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-        </h1>
+      <motion.div ref={mergedRef} className="relative flex justify-center items-center w-full mb-6 text-center px-4" animate={bismillah.isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }} transition={{ duration: 0.7 }}>
+        <h1 className="font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl z-10 relative leading-relaxed whitespace-nowrap">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h1>
       </motion.div>
 
       <div className="text-center flex flex-col items-center px-4">
@@ -95,7 +86,7 @@ export default function Introduction({ refBride, windowWidth }: { refBride: any;
         <p className="text-gray-600 mb-6">Kami yang berbahagia,</p>
 
         {/* Simplified Profile Cards - No complex refs */}
-        <ProfileCard name="Hikmah Suciani, S.Pd ,Gr" desc="Putri Pertama dari Bapak Mufrinal, S.Pd.I dan Ibu Kasmaweni" instagramLink="https://www.instagram.com/hikmahsucianii?igsh=MTd5YWU4YTFzN21sdw==" />
+        <ProfileCard name="Hikmah Suciani, S.Pd ,Gr" desc="Putri Pertama dari Bapak Mufrinal, S.Pd. SD dan Ibu Kasmaweni" instagramLink="https://www.instagram.com/hikmahsucianii?igsh=MTd5YWU4YTFzN21sdw==" />
 
         <ProfileCard name="Uji Purnomo Aji, S.P" desc="Putra Ketiga dari Bapak Suyadi dan Ibu Sugiyanti" instagramLink="https://www.instagram.com/sajakataji?igsh=MTFhZTlycDRtZng2OQ==" />
 
